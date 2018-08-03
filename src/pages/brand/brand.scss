@@ -1,0 +1,30 @@
+page-brand {
+  .button-grid {
+    height: max-content;
+  	position: absolute;
+  	top:0;
+  	bottom: 0;
+  	left: 0;
+  	right: 0;
+  	margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+	}
+
+	.row {
+		margin-bottom: 20px;
+	}
+	
+	.back-button {
+		display: none!important;
+	} 
+
+	.bar-button-menutoggle {
+		display: inline-block!important;
+	}
+
+	.brand-item {
+		margin: auto;
+		width: 100%;
+	}
+}

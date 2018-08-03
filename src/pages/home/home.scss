@@ -1,3 +1,34 @@
 page-home {
+    .button-grid {
+        height: max-content;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 
+    [col-6] {
+        padding: 15px;
+    }
+
+    .segment {
+        background-color: mediumblue;
+        padding-bottom: 1px;
+        border-radius: 20px;
+    }
+
+    .btn-img {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        width: 625px;
+    }
+
+    .title {
+        margin-top: 5px;
+        color: white;
+    }
 }

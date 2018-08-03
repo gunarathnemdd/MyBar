@@ -14,3 +14,22 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.alert-title {
+    text-align: center;
+    color: blue;
+}
+.alert-sub-title {
+    color: blue;
+}
+.alert-sub-title strong {
+    color: black;
+    font-weight: normal;
+}
+.fixed-content {
+    background-image: url('../assets/imgs/background.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    opacity: 0.5;
+}

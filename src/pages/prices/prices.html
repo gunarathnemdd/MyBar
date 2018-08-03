@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{brand}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label>Quentity</ion-label>
+        <ion-select [(ngModel)]="quentity" (ionChange)="changeQuentity()" interface="popover">
+            <ion-option *ngFor="let item of quentityArray" value="{{item.quentity}}">{{item.quentity}} ml</ion-option>
+        </ion-select>
+    </ion-item>
+    <div *ngFor="let item of pricesArray; let i = index">
+        <div class="hire-section" (click)="showDetails(item)" *ngIf=" item.li_name != 'null'">
+            <ion-row id="price-row" [ngClass]="(i % 2 == 0) ? 'snow' : 'whitesmoke'">
+                <!-- <ion-col col-1 class="display-flex">
+                    <ion-label class="hire-label number">
+                        <h4>{{i+1}}</h4>
+                    </ion-label>
+                </ion-col> -->
+                <ion-col col-8 class="display-flex">
+                    <ion-label class="hire-label">
+                        <h4 style="color: black;">{{item.li_name}}</h4>
+                    </ion-label>
+                </ion-col>
+                <ion-col col-4 class="display-flex">
+                    <ion-label class="hire-label">
+                        <h4 style="color: black;">Rs. {{item.price}}</h4>
+                    </ion-label>
+                </ion-col>
+            </ion-row>
+        </div>
+        <div *ngIf=" item.li_name == 'null'">
+            <ion-row>
+                <ion-label class="hire-label">
+                    <h4>No records are available.</h4>
+                </ion-label>
+            </ion-row>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cocktails</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid class="button-grid">
+    <ion-row text-center>
+      <button class="brand-item" (click)="beerCocktails()" ion-button large round>Beer</button>
+    </ion-row>
+    <ion-row text-center>
+      <button class="brand-item" (click)="wineCocktails()" ion-button large round>Wine</button>
+    </ion-row>
+    <ion-row text-center>
+      <button class="brand-item" (click)="brandyCocktails()" ion-button large round>Brandy</button>
+    </ion-row>
+    <ion-row text-center>
+      <button class="brand-item" (click)="wiskyCocktails()" ion-button large round>Whisky</button>
+    </ion-row>
+    <ion-row text-center>
+      <button class="brand-item" (click)="vodkaCocktails()" ion-button large round>Vodka</button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

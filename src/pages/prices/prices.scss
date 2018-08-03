@@ -1,0 +1,21 @@
+page-prices {
+    .back-button {
+		display: none!important;
+	} 
+	.bar-button-menutoggle {
+		display: inline-block!important;
+	}
+    .hire-label {
+        display: table-cell;
+    }
+    #price-row {
+		padding-top: 10px;
+		padding-left: 10px;
+	}
+	.whitesmoke{
+		background-color:whitesmoke;
+	}
+	.snow{
+		background-color:snow;
+	}
+}
