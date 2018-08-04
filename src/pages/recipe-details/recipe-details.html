@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{recipeName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item ion-item *ngFor="let item of ingredientArray; let i = index">
+    <ion-label>{{ item.name }}</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+</ion-content>

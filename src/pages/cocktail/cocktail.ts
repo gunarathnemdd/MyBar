@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { PricesPage } from '../prices/prices';
+import { RecipePage } from '../recipe/recipe';
 
 @Component({
   selector: 'page-cocktail',
@@ -9,7 +9,9 @@ import { PricesPage } from '../prices/prices';
 })
 export class CocktailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -18,41 +20,36 @@ export class CocktailPage {
 
   beerCocktails() {
     console.log('beerCocktails');
-    // this.navCtrl.push(PricesPage, {
-    //   brand: 'Beer',
-    //   quentity: 300
-    // });
+    this.navCtrl.push(RecipePage, {
+      brand: 'Beer'
+    });
   }
 
   wineCocktails() {
     console.log('wineCocktails');
-    // this.navCtrl.push(PricesPage, {
-    //   brand: 'Wine',
-    //   quentity: 750
-    // });
+    this.navCtrl.push(RecipePage, {
+      brand: 'Wine'
+    });
   }
 
   brandyCocktails() {
     console.log('brandyCocktails');
-    // this.navCtrl.push(PricesPage, {
-    //   brand: 'Brandy',
-    //   quentity: 750
-    // });
+    this.navCtrl.push(RecipePage, {
+      brand: 'Brandy'
+    });
   }
 
   wiskyCocktails() {
     console.log('wiskyCocktails');
-    // this.navCtrl.push(PricesPage, {
-    //   brand: 'Wisky',
-    //   quentity: 750
-    // });
+    this.navCtrl.push(RecipePage, {
+      brand: 'Wisky'
+    });
   }
 
   vodkaCocktails() {
     console.log('vodkaCocktails');
-    // this.navCtrl.push(PricesPage, {
-    //   brand: 'Vodka',
-    //   quentity: 750
-    // });
+    this.navCtrl.push(RecipePage, {
+      brand: 'Vodka'
+    });
   }
 }

@@ -10,6 +10,8 @@ import { PricesPage } from '../pages/prices/prices';
 import { BrandPage } from '../pages/brand/brand';
 import { QuentityPage } from '../pages/quentity/quentity';
 import { CocktailPage } from '../pages/cocktail/cocktail';
+import { RecipePage } from '../pages/recipe/recipe';
+import { RecipeDetailsPage } from '../pages/recipe-details/recipe-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,7 +27,9 @@ import { AlertControllerProvider } from '../providers/alert-controller/alert-con
     PricesPage,
     BrandPage,
     QuentityPage,
-    CocktailPage
+    CocktailPage,
+    RecipePage,
+    RecipeDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { AlertControllerProvider } from '../providers/alert-controller/alert-con
     PricesPage,
     BrandPage,
     QuentityPage,
-    CocktailPage
+    CocktailPage,
+    RecipePage,
+    RecipeDetailsPage
   ],
   providers: [
     StatusBar,
