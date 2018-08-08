@@ -7,5 +7,21 @@ page-bottle-details {
     }
     .bottle-details {
         background-color: white;
+        width: 90%;
+        margin-top: 20px;
+    }
+    .bottle-details h3 {
+        color: blue;
+    }
+    .bottle-details ion-col {
+        color: blue;
+        font-size: 15px;
+    }
+    .bottle-details strong {
+        color: black;
+    }
+    .bottle-details img {
+        margin: auto;
+        display: block;
     }
 }
