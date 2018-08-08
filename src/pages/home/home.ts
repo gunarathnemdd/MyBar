@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { BrandPage } from '../brand/brand';
 import { CocktailPage } from '../cocktail/cocktail';
+import { ToastControllerProvider } from '../../providers/toast-controller/toast-controller';
 
 @Component({
   selector: 'page-home',
@@ -13,7 +14,8 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    public splashScreen: SplashScreen) {
+    public splashScreen: SplashScreen,
+    public toastService: ToastControllerProvider) {
 
   }
 
@@ -33,6 +35,8 @@ export class HomePage {
 
   getBites() {
     console.log('getBites');
+    let message = "Coming Soon!";
+    this.toastService.toastCtrlr(message);
   }
 
   rateUs() {

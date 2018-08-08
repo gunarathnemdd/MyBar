@@ -43,7 +43,7 @@ export class BrandPage {
   wiskyPrices() {
     console.log('wiskyPrices');
     this.navCtrl.push(PricesPage, {
-      brand: 'Wisky',
+      brand: 'Whisky',
       quentity: 750
     });
   }

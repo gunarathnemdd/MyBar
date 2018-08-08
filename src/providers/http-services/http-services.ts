@@ -18,4 +18,8 @@ export class HttpServicesProvider {
     return this.http.get(this.host + '/getQuentity.php?brand=' + brand);
   }
 
+  getRecipe(brand) {
+    return this.http.get(this.host + '/getRecipe.php?brand=' + brand);
+  }
+
 }

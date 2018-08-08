@@ -26,6 +26,12 @@
     color: black;
     font-weight: normal;
 }
+.alert-md .alert-button {
+    margin: auto;
+}
+.alert-md .alert-button-group {
+    padding: 8px;
+}
 .fixed-content {
     background-image: url('../assets/imgs/background.jpg');
     background-repeat: no-repeat;

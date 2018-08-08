@@ -3,13 +3,23 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{recipeName}}</ion-title>
+    <ion-title>Cocktails / {{brand}} / {{recipeName}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-item ion-item *ngFor="let item of ingredientArray; let i = index">
+  <ion-item ion-item *ngFor="let item of ingredientArray; let i = index" [ngClass]="(i % 2 == 0) ? 'snow' : 'whitesmoke'">
     <ion-label>{{ item.name }}</ion-label>
     <ion-checkbox></ion-checkbox>
   </ion-item>
+  <ion-row id="list-row">
+    <ion-col col-12 class="display-flex">
+      {{description}}
+    </ion-col>
+  </ion-row>
+  <ion-row id="list-row">
+    <ion-col col-12 class="display-flex">
+      Specially for: {{liqure}}
+    </ion-col>
+  </ion-row>
 </ion-content>

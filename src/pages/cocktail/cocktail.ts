@@ -42,7 +42,7 @@ export class CocktailPage {
   wiskyCocktails() {
     console.log('wiskyCocktails');
     this.navCtrl.push(RecipePage, {
-      brand: 'Wisky'
+      brand: 'Whisky'
     });
   }
 

@@ -5,13 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { BitePage } from '../pages/bite/bite';
 import { PricesPage } from '../pages/prices/prices';
 import { BrandPage } from '../pages/brand/brand';
 import { QuentityPage } from '../pages/quentity/quentity';
 import { CocktailPage } from '../pages/cocktail/cocktail';
 import { RecipePage } from '../pages/recipe/recipe';
 import { RecipeDetailsPage } from '../pages/recipe-details/recipe-details';
+import { BottleDetailsPage } from '../pages/bottle-details/bottle-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,13 +24,14 @@ import { AlertControllerProvider } from '../providers/alert-controller/alert-con
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    BitePage,
     PricesPage,
     BrandPage,
     QuentityPage,
     CocktailPage,
     RecipePage,
-    RecipeDetailsPage
+    RecipeDetailsPage,
+    BottleDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -40,13 +42,14 @@ import { AlertControllerProvider } from '../providers/alert-controller/alert-con
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    BitePage,
     PricesPage,
     BrandPage,
     QuentityPage,
     CocktailPage,
     RecipePage,
-    RecipeDetailsPage
+    RecipeDetailsPage,
+    BottleDetailsPage
   ],
   providers: [
     StatusBar,

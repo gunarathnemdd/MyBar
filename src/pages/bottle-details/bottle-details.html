@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Prices / {{brand}} / {{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="bottle-details">
+    <ion-row>
+      <ion-col>
+        <h3 text-center>{{title}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-auto>
+        <ion-row>
+          <ion-col>
+            <strong>Price:</strong> {{price}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <strong>Type:</strong> {{type}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <strong>V/V:</strong> {{volume}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <strong>Volume:</strong> {{quentity}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <strong>Year:</strong> {{year}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <strong>Company:</strong> {{company}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <strong>Country:</strong> {{country}}
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <img [src]="image" onError="this.src='assets/imgs/bottles/default.jpg'"/>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
