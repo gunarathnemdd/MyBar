@@ -16,6 +16,14 @@ export class BrandPage {
     console.log('ionViewDidLoad BrandPage');
   }
 
+  prices(brand, quentity) {
+    console.log('prices');
+    this.navCtrl.push(PricesPage, {
+      brand: brand,
+      quentity: quentity
+    });
+  }
+
   beerPrices() {
     console.log('beerPrices');
     this.navCtrl.push(PricesPage, {
