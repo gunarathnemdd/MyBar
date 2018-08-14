@@ -7,15 +7,16 @@ page-prices {
     }
     .row-label {
         display: table-cell;
+        white-space: unset;
     }
     #list-row {
 		padding-top: 10px;
 		padding-left: 10px;
 	}
-	.whitesmoke{
-		background-color:whitesmoke;
+	.beige{
+		background-color:beige;
 	}
-	.snow{
-		background-color:snow;
+	.lightyellow{
+		background-color:lightyellow;
 	}
 }

@@ -16,7 +16,7 @@
     </ion-item>
     <div *ngFor="let item of pricesArray; let i = index">
         <div (click)="showDetails(item)" *ngIf=" item.li_name != 'null'">
-            <ion-row id="list-row" [ngClass]="(i % 2 == 0) ? 'snow' : 'whitesmoke'">
+            <ion-row id="list-row" [ngClass]="(i % 2 == 0) ? 'lightyellow' : 'beige'">
                 <!-- <ion-col col-1 class="display-flex">
                     <ion-label class="hire-label number">
                         <h4>{{i+1}}</h4>
