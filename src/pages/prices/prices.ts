@@ -16,6 +16,8 @@ export class PricesPage {
   public quentity: any;
   public pricesArray: any;//[] = [];
   public quentityArray: any;//[] = [];
+  public pricesArrayLength: any;
+  public infiniteScrollEnabled: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -26,15 +28,33 @@ export class PricesPage {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
     this.quentity = this.navParams.get('quentity');
+    this.infiniteScrollEnabled = false;
   }
 
   ionViewDidLoad() {
+    this.getPriceLength(this.quentity);
     this.getPrice(this.quentity);
     this.getQuentity(this.brand);
   }
 
+  getPriceLength(quentity) {
+    this.service.getPriceLength(this.brand, quentity).subscribe(data => {
+      console.log(data);
+      if (data == 0) {
+        this.pricesArrayLength = 0;
+      }
+      else {
+        this.pricesArrayLength = data[0]['length'];
+      }
+    },
+      (err) => {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      });
+  }
+
   getPrice(quentity) {
-    this.service.getPrice(this.brand, quentity).subscribe(data => {
+    this.service.getPrice(this.brand, quentity, 0).subscribe(data => {
       console.log(data);
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
@@ -66,7 +86,8 @@ export class PricesPage {
   }
 
   changeQuentity() {
-    this.service.getPrice(this.brand, this.quentity).subscribe(data => {
+    this.getPriceLength(this.quentity);
+    this.service.getPrice(this.brand, this.quentity, 0).subscribe(data => {
       console.log(data);
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
@@ -87,32 +108,24 @@ export class PricesPage {
       brand: this.brand,
       liqure: liqure
     });
-    // let volume;
-    // let year;
-    // let company;
-    // let country;
-    // let price = liqure['price'];
-    // let type = liqure['li_type'];
-    // let quentity = liqure['quentity'];
-    // let brand = liqure['li_brand'];
-    // if(liqure['li_volume'] == '0') { volume = "-"; } else { volume = liqure['li_volume'] + "%"; }
-    // if(liqure['li_year'] == '0000') { year = "-"; } else { year = liqure['li_year']; }
-    // if(liqure['li_company'] == '') { company = "-"; } else { company = liqure['li_company']; }
-    // if(liqure['li_country'] == '') { country = "-"; } else { country = liqure['li_country']; }
-    // let title = liqure['li_name'];
-    // //let message = "<strong>Price:</strong> Rs." + price + "<br><strong>Type:</strong> " + type + "<br><strong>V/V:</strong> " + volume + "<br><strong>Volume:</strong> " + quentity + " ml<br><strong>Year:</strong> " + year + "<br><strong>Brand:</strong> " + brand + "<br><strong>Company:</strong> " + company + "<br><strong>Country:</strong> " + country;
-    // let message = "<p><strong>Price:</strong> Rs." + price + "</p><p><strong>Type:</strong> " + type + "</p><p><strong>V/V:</strong> " + volume + "</p><p><strong>Volume:</strong> " + quentity + " ml</p><p><strong>Year:</strong> " + year + "</p><p><strong>Brand:</strong> " + brand + "</p><p><strong>Company:</strong> " + company + "</p><p><strong>Country:</strong> " + country;
-    // let buttons = [{ text: 'OK', role: 'cancel' }];
-    // this.alertService.alertCtrlr(title, message, buttons);
   }
 
-  // alertCtrlr(title: string, message: string, buttons: any) {
-  //   let confirmAlert = this.alertCtrl.create({
-  //     title: title,
-  //     subTitle: message,
-  //     buttons: buttons
-  //   });
-  //   confirmAlert.present();
+  // doInfinite(infiniteScroll) {
+  //   this.service.getPrice(this.brand, this.quentity, 10).subscribe(data => {
+  //     console.log(data);
+  //     if (data == 0) {
+  //       this.pricesArray = [{ li_name: "null" }];
+  //       infiniteScroll.complete();
+  //     }
+  //     else {
+  //       this.pricesArray = this.pricesArray.concat(data);
+  //       infiniteScroll.complete();
+  //     }
+  //   },
+  //     (err) => {
+  //       let message = "Network error! Please check your internet connection.";
+  //       this.toastService.toastCtrlr(message);
+  //     });
   // }
 
 }
