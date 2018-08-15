@@ -10,22 +10,20 @@ page-cocktail {
         padding-left: 20px;
         padding-right: 20px;
     }
-  
     .row {
         margin-bottom: 20px;
     }
-      
     .back-button {
         display: none!important;
     } 
-  
     .bar-button-menutoggle {
         display: inline-block!important;
     }
-  
     .brand-item {
         margin: auto;
-        width: 100%;
+        width: 50%;
+        color: blue;
+        background-color: wheat;
     }
 }
   

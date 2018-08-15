@@ -10,8 +10,12 @@ export class HttpServicesProvider {
   constructor(public http: HttpClient) {
   }
 
-  getPrice(brand, quentity) {
-    return this.http.get(this.host + '/getPrice.php?brand=' + brand + '&quentity=' + quentity);
+  getPriceLength(brand, quentity) {
+    return this.http.get(this.host + '/getPriceLength.php?brand=' + brand + '&quentity=' + quentity);
+  }
+
+  getPrice(brand, quentity, offset) {
+    return this.http.get(this.host + '/getPrice.php?brand=' + brand + '&quentity=' + quentity + '&offset=' + offset);
   }
 
   getQuentity(brand) {
