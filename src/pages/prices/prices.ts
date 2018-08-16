@@ -18,6 +18,7 @@ export class PricesPage {
   public quentityArray: any;//[] = [];
   public pricesArrayLength: any;
   public infiniteScrollEnabled: boolean;
+  public sortBy: any;
 
   constructor(
     public navCtrl: NavController,
@@ -28,6 +29,7 @@ export class PricesPage {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
     this.quentity = this.navParams.get('quentity');
+    this.sortBy = "li_name";
     this.infiniteScrollEnabled = false;
   }
 
@@ -54,7 +56,7 @@ export class PricesPage {
   }
 
   getPrice(quentity) {
-    this.service.getPrice(this.brand, quentity, 0).subscribe(data => {
+    this.service.getPrice(this.brand, quentity, 0, this.sortBy).subscribe(data => {
       console.log(data);
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
@@ -85,9 +87,10 @@ export class PricesPage {
       });
   }
 
-  changeQuentity() {
+  priceListUpdate() {
+    console.log(this.quentity, this.sortBy);
     this.getPriceLength(this.quentity);
-    this.service.getPrice(this.brand, this.quentity, 0).subscribe(data => {
+    this.service.getPrice(this.brand, this.quentity, 0, this.sortBy).subscribe(data => {
       console.log(data);
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
@@ -102,12 +105,43 @@ export class PricesPage {
       });
   }
 
+  // sortAndListed() {
+  //   this.service.getPrice(this.brand, this.quentity, 0).subscribe(data => {
+  //     console.log(data);
+  //     if (data == 0) {
+  //       this.pricesArray = [{ li_name: "null" }];
+  //     }
+  //     else {
+  //       this.pricesArray = data;
+  //     }
+  //   },
+  //     (err) => {
+  //       let message = "Network error! Please check your internet connection.";
+  //       this.toastService.toastCtrlr(message);
+  //     });
+  // }
+
   showDetails(liqure) {
     console.log(liqure);
-    this.navCtrl.push(BottleDetailsPage, {
-      brand: this.brand,
-      liqure: liqure
-    });
+    this.service.getBottlePrices(liqure['li_id']).subscribe(data => {
+      console.log(data);
+      if (data == 0) {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      }
+      else {
+        //this.pricesArray = data;
+        this.navCtrl.push(BottleDetailsPage, {
+          brand: this.brand,
+          liqure: liqure,
+          priceList: data
+        });
+      }
+    },
+      (err) => {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      });
   }
 
   // doInfinite(infiniteScroll) {

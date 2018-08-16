@@ -7,13 +7,34 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-item>
-        <ion-label>Quentity</ion-label>
-        <ion-select [(ngModel)]="quentity" (ionChange)="changeQuentity()" interface="popover">
-            <ion-option *ngFor="let item of quentityArray" value="{{item.quentity}}">{{item.quentity}}ml</ion-option>
-        </ion-select>
-    </ion-item>
+<ion-content padding overflow-scroll="true">
+    <div class="item-divider">
+        <ion-item class="item-divider">
+            <ion-label style="color: black">Quantity</ion-label>
+            <ion-select [(ngModel)]="quentity" (ionChange)="priceListUpdate()" interface="popover">
+                <ion-option *ngFor="let item of quentityArray" value="{{item.quentity}}">{{item.quentity}}ml</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-row class="item-divider" radio-group [(ngModel)]="sortBy" (ionChange)="priceListUpdate()">
+            <ion-col class="radio-col">
+                <ion-item>
+                    Sort By
+                </ion-item>
+            </ion-col>
+            <ion-col class="radio-col">
+                <ion-item>
+                    <ion-label>Name</ion-label>
+                    <ion-radio value="li_name"></ion-radio>
+                </ion-item>
+            </ion-col>
+            <ion-col class="radio-col">
+                <ion-item>
+                    <ion-label>Price</ion-label>
+                    <ion-radio value="price"></ion-radio>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </div>
     <div *ngFor="let item of pricesArray; let i = index">
         <div id="list-div" (click)="showDetails(item)" *ngIf=" item.li_name != 'null'">
             <ion-row id="list-row" [ngClass]="(i % 2 == 0) ? 'lightyellow' : 'beige'">
@@ -42,10 +63,10 @@
             </ion-row>
         </div>
     </div>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="infiniteScrollEnabled">
+    <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="infiniteScrollEnabled">
         <ion-infinite-scroll-content
          loadingSpinner="bubbles"
          loadingText="Loading more data...">
         </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    </ion-infinite-scroll> -->
 </ion-content>
