@@ -45,20 +45,20 @@
                 </ion-col> -->
                 <ion-col col-8 class="display-flex">
                     <ion-label class="row-label">
-                        <h4>{{item.li_name}}</h4>
+                        {{item.li_name}}
                     </ion-label>
                 </ion-col>
                 <ion-col col-4 class="display-flex">
                     <ion-label class="row-label">
-                        <h4>Rs. {{item.price}}</h4>
+                        Rs. {{item.price}}
                     </ion-label>
                 </ion-col>
             </ion-row>
         </div>
         <div *ngIf=" item.li_name == 'null'">
             <ion-row>
-                <ion-label class="row-label">
-                    <h4>No records are available.</h4>
+                <ion-label class="row-label no-records">
+                    No records are available.
                 </ion-label>
             </ion-row>
         </div>
