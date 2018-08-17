@@ -1,5 +1,5 @@
 import { Component, ViewChild  } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, Content, LoadingController } from 'ionic-angular';
 
 import { BottleDetailsPage } from '../bottle-details/bottle-details';
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
@@ -26,7 +26,8 @@ export class PricesPage {
     public navParams: NavParams,
     public service: HttpServicesProvider,
     public toastService: ToastControllerProvider,
-    public alertService: AlertControllerProvider) {
+    public alertService: AlertControllerProvider,
+		public loadingCtrl: LoadingController) {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
     this.quentity = this.navParams.get('quentity');
@@ -61,8 +62,13 @@ export class PricesPage {
   }
 
   getPrice(quentity) {
+    let loading = this.loadingCtrl.create({
+			content: 'Get Ready...'
+		});
+		loading.present();
     this.service.getPrice(this.brand, quentity, 0, this.sortBy).subscribe(data => {
       console.log(data);
+      loading.dismiss();
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
       }
@@ -71,6 +77,7 @@ export class PricesPage {
       }
     },
       (err) => {
+        loading.dismiss();
         let message = "Network error! Please check your internet connection.";
         this.toastService.toastCtrlr(message);
       });
@@ -95,8 +102,13 @@ export class PricesPage {
   priceListUpdate() {
     console.log(this.quentity, this.sortBy);
     this.getPriceLength(this.quentity);
+    // let loading = this.loadingCtrl.create({
+		// 	content: 'Get Ready...'
+		// });
+		// loading.present();
     this.service.getPrice(this.brand, this.quentity, 0, this.sortBy).subscribe(data => {
       console.log(data);
+      //loading.dismiss();
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
       }
@@ -105,6 +117,7 @@ export class PricesPage {
       }
     },
       (err) => {
+        //loading.dismiss();
         let message = "Network error! Please check your internet connection.";
         this.toastService.toastCtrlr(message);
       });

@@ -15,7 +15,7 @@
       </ion-col>
       <ion-col col-12 class="display-flex">
         <h5>
-          <strong>Ingredients</strong>
+          <strong>Ingredients:</strong>
         </h5>
         <div class='contents contents-div'>
           <ion-item ion-item *ngFor="let item of ingredientArray; let i = index">
@@ -26,13 +26,13 @@
       </ion-col>
       <ion-col col-12 class="display-flex">
         <h5>
-          <strong>Method</strong>
+          <strong>Method:</strong>
         </h5>
         <p class='contents' text-justify>{{description}}</p>
       </ion-col>
-      <ion-col col-12 class="display-flex">
+      <ion-col col-12 class="display-flex" *ngIf=" garnishes != ''">
         <h5>
-          <strong>Garnishes</strong>
+          <strong>Garnishes:</strong>
         </h5>
         <p class='contents' text-justify>{{garnishes}}</p>
       </ion-col>
