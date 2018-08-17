@@ -7,7 +7,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding autohide>
     <div *ngFor="let item of cocktailArray; let i = index">
         <div (click)="showDetails(item)" *ngIf=" item.cr_name != 'null'">
             <ion-row id="list-row" [ngClass]="(i % 2 == 0) ? 'lightyellow' : 'beige'">
@@ -18,17 +18,22 @@
                 </ion-col> -->
                 <ion-col col-12 class="display-flex">
                     <ion-label class="row-label">
-                        <h4 style="color: black;">{{item.cr_name}}</h4>
+                        {{item.cr_name}}
                     </ion-label>
                 </ion-col>
             </ion-row>
         </div>
         <div *ngIf=" item.cr_name == 'null'">
             <ion-row>
-                <ion-label class="row-label">
-                    <h4>No records are available.</h4>
+                <ion-label class="row-label no-records">
+                    No records are available.
                 </ion-label>
             </ion-row>
         </div>
     </div>
+    <ion-fab bottom right #fab>
+        <button ion-fab (click)="scrollToTop()">
+            <ion-icon name="ios-arrow-up"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>

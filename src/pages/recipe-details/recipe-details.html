@@ -8,32 +8,34 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-row id="list-row">
-    <ion-col col-12 class="display-flex" text-center>
-      <h2>{{recipeName}}</h2>
-    </ion-col>
-    <ion-col col-12 class="display-flex">
-      <h5>
-        <strong>Ingredients</strong>
-      </h5>
-      <div class='contents contents-div'>
-        <ion-item ion-item *ngFor="let item of ingredientArray; let i = index">
-          <ion-label>{{ item.name }}</ion-label>
-          <ion-checkbox></ion-checkbox>
-        </ion-item>
-      </div>
-    </ion-col>
-    <ion-col col-12 class="display-flex">
-      <h5>
-        <strong>Instructions</strong>
-      </h5>
-      <p class='contents' text-justify>{{description}}</p>
-    </ion-col>
-    <ion-col col-12 class="display-flex">
-      <h5>
-        <strong>Specially for:</strong>
-      </h5>
-      <p class='contents'>{{liqure}}</p>
-    </ion-col>
-  </ion-row>
+  <ion-grid>
+    <ion-row id="list-row">
+      <ion-col col-12 class="display-flex item-divider">
+        <h2 text-center>{{recipeName}}</h2>
+      </ion-col>
+      <ion-col col-12 class="display-flex">
+        <h5>
+          <strong>Ingredients</strong>
+        </h5>
+        <div class='contents contents-div'>
+          <ion-item ion-item *ngFor="let item of ingredientArray; let i = index">
+            <ion-label>{{ item.name }}</ion-label>
+            <ion-checkbox></ion-checkbox>
+          </ion-item>
+        </div>
+      </ion-col>
+      <ion-col col-12 class="display-flex">
+        <h5>
+          <strong>Instructions</strong>
+        </h5>
+        <p class='contents' text-justify>{{description}}</p>
+      </ion-col>
+      <ion-col col-12 class="display-flex">
+        <h5>
+          <strong>Specially for:</strong>
+        </h5>
+        <p class='contents'>{{liqure}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

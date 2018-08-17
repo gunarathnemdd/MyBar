@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 
 import { BottleDetailsPage } from '../bottle-details/bottle-details';
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
@@ -11,6 +11,7 @@ import { AlertControllerProvider } from '../../providers/alert-controller/alert-
   templateUrl: 'prices.html'
 })
 export class PricesPage {
+  @ViewChild(Content) content: Content;
 
   public brand: any;
   public quentity: any;
@@ -37,6 +38,10 @@ export class PricesPage {
     this.getPriceLength(this.quentity);
     this.getPrice(this.quentity);
     this.getQuentity(this.brand);
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 
   getPriceLength(quentity) {

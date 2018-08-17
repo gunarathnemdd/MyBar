@@ -7,18 +7,18 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding overflow-scroll="true">
+<ion-content padding autohide>
     <div class="item-divider">
-        <ion-item class="item-divider">
+        <ion-item>
             <ion-label style="color: black">Quantity</ion-label>
             <ion-select [(ngModel)]="quentity" (ionChange)="priceListUpdate()" interface="popover">
                 <ion-option *ngFor="let item of quentityArray" value="{{item.quentity}}">{{item.quentity}}ml</ion-option>
             </ion-select>
         </ion-item>
-        <ion-row class="item-divider" radio-group [(ngModel)]="sortBy" (ionChange)="priceListUpdate()">
+        <ion-row radio-group [(ngModel)]="sortBy" (ionChange)="priceListUpdate()">
             <ion-col class="radio-col">
                 <ion-item>
-                    Sort By
+                    <ion-label>Sort By</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col class="radio-col">
@@ -63,6 +63,11 @@
             </ion-row>
         </div>
     </div>
+    <ion-fab bottom right #fab>
+        <button ion-fab (click)="scrollToTop()">
+            <ion-icon name="ios-arrow-up"></ion-icon>
+        </button>
+    </ion-fab>
     <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="infiniteScrollEnabled">
         <ion-infinite-scroll-content
          loadingSpinner="bubbles"

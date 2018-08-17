@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 
 import { RecipeDetailsPage } from '../recipe-details/recipe-details';
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
@@ -10,6 +10,7 @@ import { ToastControllerProvider } from '../../providers/toast-controller/toast-
   templateUrl: 'recipe.html',
 })
 export class RecipePage {
+  @ViewChild(Content) content: Content;
 
   public brand: any;
   public cocktailArray: any;
@@ -26,6 +27,10 @@ export class RecipePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipePage');
     this.getRecipe(this.brand);
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 
   getRecipe(brand) {
