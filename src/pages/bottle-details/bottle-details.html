@@ -9,26 +9,28 @@
 
 <ion-content padding>
   <ion-grid class="bottle-details">
-    <ion-row>
-      <ion-col>
-        <h2 text-center>{{title}}</h2>
-      </ion-col>
-    </ion-row>
-    <div>
+    <div class="item-divider">
       <ion-row>
-        <ion-col id="price-col" col-auto *ngFor="let item of pricesArray; let i = index">
-          <ion-row>
-            <ion-col>
-              <strong>{{item.quentity}}ml:</strong>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              Rs.{{item.price}}
-            </ion-col>
-          </ion-row>
+        <ion-col>
+          <h2 text-center>{{title}}</h2>
         </ion-col>
       </ion-row>
+      <div>
+        <ion-row>
+          <ion-col id="price-col" col-12 col-auto *ngFor="let item of pricesArray; let i = index">
+            <ion-row>
+              <ion-col col-3 push-2>
+                <strong>{{item.quentity}}ml:</strong>
+              </ion-col>
+              <ion-col col-2 push-2>
+              </ion-col>
+              <ion-col col-3 push-2 text-right>
+                Rs.{{item.price}}
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </div>
     </div>
     <ion-row>
       <ion-col col-6>
