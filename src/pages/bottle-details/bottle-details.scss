@@ -23,4 +23,19 @@ page-bottle-details {
         margin: auto;
         display: block;
     }
+    #price-col {
+        margin: auto;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+    #price-col .col {
+        border-bottom: 1px solid greenyellow;
+    }
+    .item-divider{
+        background-color: lightyellow;
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0px;
+        z-index: 3 !important;
+    }
 }

@@ -14,12 +14,20 @@ export class HttpServicesProvider {
     return this.http.get(this.host + '/getPriceLength.php?brand=' + brand + '&quentity=' + quentity);
   }
 
-  getPrice(brand, quentity, offset) {
-    return this.http.get(this.host + '/getPrice.php?brand=' + brand + '&quentity=' + quentity + '&offset=' + offset);
+  searchPrice(brand, quentity, offset, sortBy, searchText) {
+    return this.http.get(this.host + '/searchPrice.php?brand=' + brand + '&quentity=' + quentity + '&offset=' + offset + '&sortBy=' + sortBy + '&searchBy=' + searchText);
+  }
+
+  getPrice(brand, quentity, offset, sortBy) {
+    return this.http.get(this.host + '/getPrice.php?brand=' + brand + '&quentity=' + quentity + '&offset=' + offset + '&sortBy=' + sortBy);
   }
 
   getQuentity(brand) {
     return this.http.get(this.host + '/getQuentity.php?brand=' + brand);
+  }
+
+  getBottlePrices(liqureId) {
+    return this.http.get(this.host + '/getBottlePrices.php?liqureId=' + liqureId);
   }
 
   getRecipe(brand) {

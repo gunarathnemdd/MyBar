@@ -15,13 +15,20 @@ page-prices {
 	}
 	.beige{
         background-color:beige;
-        color: steelblue;
 	}
 	.lightyellow{
         background-color:lightyellow;
-        color: royalblue;
     }
-    // #list-div h4 {
-    //     color: blue;
-    // }
+    .no-records {
+        color: white;
+    }
+    .radio-col {
+        padding: 0 0 5px 0;
+    }
+    .item-divider{
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0px;
+        z-index: 3 !important;
+    }
 }

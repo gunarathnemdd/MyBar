@@ -18,7 +18,7 @@ export class BottleDetailsPage {
   public volume: any;
   public title: any;
   public image: string;
-
+  public pricesArray: any;
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +26,7 @@ export class BottleDetailsPage {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
     this.liqure = this.navParams.get('liqure');
+    this.pricesArray = this.navParams.get('priceList');
   }
 
   ionViewDidLoad() {
@@ -44,5 +45,4 @@ export class BottleDetailsPage {
     if (liqure['li_company'] == '') { this.company = "-"; } else { this.company = liqure['li_company']; }
     if (liqure['li_country'] == '') { this.country = "-"; } else { this.country = liqure['li_country']; }
   }
-  
 }

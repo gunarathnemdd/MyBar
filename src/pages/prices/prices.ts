@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { NavController, NavParams, Content, LoadingController } from 'ionic-angular';
 
 import { BottleDetailsPage } from '../bottle-details/bottle-details';
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
@@ -11,6 +11,7 @@ import { AlertControllerProvider } from '../../providers/alert-controller/alert-
   templateUrl: 'prices.html'
 })
 export class PricesPage {
+  @ViewChild(Content) content: Content;
 
   public brand: any;
   public quentity: any;
@@ -18,16 +19,20 @@ export class PricesPage {
   public quentityArray: any;//[] = [];
   public pricesArrayLength: any;
   public infiniteScrollEnabled: boolean;
+  public sortBy: any;
+  public isSearchBarOpened: boolean = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public service: HttpServicesProvider,
     public toastService: ToastControllerProvider,
-    public alertService: AlertControllerProvider) {
+    public alertService: AlertControllerProvider,
+		public loadingCtrl: LoadingController) {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
     this.quentity = this.navParams.get('quentity');
+    this.sortBy = "li_name";
     this.infiniteScrollEnabled = false;
   }
 
@@ -35,6 +40,10 @@ export class PricesPage {
     this.getPriceLength(this.quentity);
     this.getPrice(this.quentity);
     this.getQuentity(this.brand);
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 
   getPriceLength(quentity) {
@@ -54,8 +63,13 @@ export class PricesPage {
   }
 
   getPrice(quentity) {
-    this.service.getPrice(this.brand, quentity, 0).subscribe(data => {
+    let loading = this.loadingCtrl.create({
+			content: 'Get Ready...'
+		});
+		loading.present();
+    this.service.getPrice(this.brand, quentity, 0, this.sortBy).subscribe(data => {
       console.log(data);
+      loading.dismiss();
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
       }
@@ -64,6 +78,7 @@ export class PricesPage {
       }
     },
       (err) => {
+        loading.dismiss();
         let message = "Network error! Please check your internet connection.";
         this.toastService.toastCtrlr(message);
       });
@@ -85,9 +100,34 @@ export class PricesPage {
       });
   }
 
-  changeQuentity() {
+  priceListUpdate() {
+    console.log(this.quentity, this.sortBy);
     this.getPriceLength(this.quentity);
-    this.service.getPrice(this.brand, this.quentity, 0).subscribe(data => {
+    // let loading = this.loadingCtrl.create({
+		// 	content: 'Get Ready...'
+		// });
+		// loading.present();
+    this.service.getPrice(this.brand, this.quentity, 0, this.sortBy).subscribe(data => {
+      console.log(data);
+      //loading.dismiss();
+      if (data == 0) {
+        this.pricesArray = [{ li_name: "null" }];
+      }
+      else {
+        this.pricesArray = data;
+      }
+    },
+      (err) => {
+        //loading.dismiss();
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      });
+  }
+
+  onInput(event) {
+    console.log(event.target.value);
+    let searchText = event.target.value;
+    this.service.searchPrice(this.brand, this.quentity, 0, this.sortBy, searchText).subscribe(data => {
       console.log(data);
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
@@ -104,10 +144,25 @@ export class PricesPage {
 
   showDetails(liqure) {
     console.log(liqure);
-    this.navCtrl.push(BottleDetailsPage, {
-      brand: this.brand,
-      liqure: liqure
-    });
+    this.service.getBottlePrices(liqure['li_id']).subscribe(data => {
+      console.log(data);
+      if (data == 0) {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      }
+      else {
+        //this.pricesArray = data;
+        this.navCtrl.push(BottleDetailsPage, {
+          brand: this.brand,
+          liqure: liqure,
+          priceList: data
+        });
+      }
+    },
+      (err) => {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      });
   }
 
   // doInfinite(infiniteScroll) {

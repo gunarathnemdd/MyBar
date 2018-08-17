@@ -20,6 +20,8 @@ import { HttpServicesProvider } from '../providers/http-services/http-services';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
 import { AlertControllerProvider } from '../providers/alert-controller/alert-controller';
 
+import { AutohideDirective } from '../directives/autohide/autohide';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +33,8 @@ import { AlertControllerProvider } from '../providers/alert-controller/alert-con
     CocktailPage,
     RecipePage,
     RecipeDetailsPage,
-    BottleDetailsPage
+    BottleDetailsPage,
+    AutohideDirective
   ],
   imports: [
     BrowserModule,

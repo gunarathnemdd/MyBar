@@ -38,4 +38,14 @@ page-recipe-details {
     .item {
         background-color: wheat;
     }
+    .item-divider{
+        background-color:white;
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0px;
+        z-index: 3 !important;
+    }
+    .item {
+        font-size: unset;
+    }
 }

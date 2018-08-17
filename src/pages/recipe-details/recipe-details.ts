@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 
 @Component({
   selector: 'page-recipe-details',
   templateUrl: 'recipe-details.html',
 })
 export class RecipeDetailsPage {
+  @ViewChild(Content) content: Content;
 
   public recipe: any;
   public ingredientArray: any[] = [];
@@ -13,6 +14,9 @@ export class RecipeDetailsPage {
   public description: any;
   public liqure: any;
   public brand: any;
+  public speciallyFor: any;
+  public garnishes: any;
+  public image: any;
 
   constructor(
     public navCtrl: NavController,
@@ -27,6 +31,10 @@ export class RecipeDetailsPage {
     this.showRecipe(this.recipe);
   }
 
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
+
   showRecipe(recipe) {
     console.log(recipe);
     let ingredient = recipe['cr_ingredients'];
@@ -37,6 +45,9 @@ export class RecipeDetailsPage {
     this.recipeName = recipe['cr_name'];
     this.description = recipe['cr_description'];
     this.liqure = recipe['cr_liqureType'];
+    this.speciallyFor = recipe['cr_speciallyFor'];
+    this.garnishes = recipe['cr_garnishes'];
+    this.image = 'assets/imgs/cocktail/'+ recipe['cr_id'] +'.jpg';
   }
 
 }
