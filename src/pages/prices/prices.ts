@@ -20,6 +20,7 @@ export class PricesPage {
   public pricesArrayLength: any;
   public infiniteScrollEnabled: boolean;
   public sortBy: any;
+  public isSearchBarOpened: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -123,21 +124,23 @@ export class PricesPage {
       });
   }
 
-  // sortAndListed() {
-  //   this.service.getPrice(this.brand, this.quentity, 0).subscribe(data => {
-  //     console.log(data);
-  //     if (data == 0) {
-  //       this.pricesArray = [{ li_name: "null" }];
-  //     }
-  //     else {
-  //       this.pricesArray = data;
-  //     }
-  //   },
-  //     (err) => {
-  //       let message = "Network error! Please check your internet connection.";
-  //       this.toastService.toastCtrlr(message);
-  //     });
-  // }
+  onInput(event) {
+    console.log(event.target.value);
+    let searchText = event.target.value;
+    this.service.searchPrice(this.brand, this.quentity, 0, this.sortBy, searchText).subscribe(data => {
+      console.log(data);
+      if (data == 0) {
+        this.pricesArray = [{ li_name: "null" }];
+      }
+      else {
+        this.pricesArray = data;
+      }
+    },
+      (err) => {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      });
+  }
 
   showDetails(liqure) {
     console.log(liqure);
