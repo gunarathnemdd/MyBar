@@ -18,38 +18,10 @@ export class CocktailPage {
     console.log('ionViewDidLoad CocktailPage');
   }
 
-  beerCocktails() {
-    console.log('beerCocktails');
+  cocktails(brand) {
     this.navCtrl.push(RecipePage, {
-      brand: 'Beer'
+      brand: brand
     });
   }
 
-  wineCocktails() {
-    console.log('wineCocktails');
-    this.navCtrl.push(RecipePage, {
-      brand: 'Wine'
-    });
-  }
-
-  brandyCocktails() {
-    console.log('brandyCocktails');
-    this.navCtrl.push(RecipePage, {
-      brand: 'Brandy'
-    });
-  }
-
-  wiskyCocktails() {
-    console.log('wiskyCocktails');
-    this.navCtrl.push(RecipePage, {
-      brand: 'Whisky'
-    });
-  }
-
-  vodkaCocktails() {
-    console.log('vodkaCocktails');
-    this.navCtrl.push(RecipePage, {
-      brand: 'Vodka'
-    });
-  }
 }

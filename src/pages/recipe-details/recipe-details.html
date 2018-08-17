@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding autohide>
   <ion-grid>
     <ion-row id="list-row">
       <ion-col col-12 class="display-flex item-divider">
@@ -26,16 +26,32 @@
       </ion-col>
       <ion-col col-12 class="display-flex">
         <h5>
-          <strong>Instructions</strong>
+          <strong>Method</strong>
         </h5>
         <p class='contents' text-justify>{{description}}</p>
       </ion-col>
       <ion-col col-12 class="display-flex">
         <h5>
+          <strong>Garnishes</strong>
+        </h5>
+        <p class='contents' text-justify>{{garnishes}}</p>
+      </ion-col>
+      <ion-col col-12 class="display-flex">
+        <h5>
           <strong>Specially for:</strong>
         </h5>
-        <p class='contents'>{{liqure}}</p>
+        <p class='contents'>{{speciallyFor}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row id="list-row" style="margin-top: -1px;">
+      <ion-col>
+        <img [src]="image" onError="this.src='assets/imgs/bottles/default.jpg'" />
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab bottom right #fab>
+      <button ion-fab (click)="scrollToTop()">
+          <ion-icon name="ios-arrow-up"></ion-icon>
+      </button>
+  </ion-fab>
 </ion-content>
