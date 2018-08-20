@@ -11,6 +11,7 @@ export class AlertControllerProvider {
     let confirmAlert = this.alertCtrl.create({
       title: title,
       subTitle: message,
+      enableBackdropDismiss: false,
       buttons: buttons
     });
     confirmAlert.present();

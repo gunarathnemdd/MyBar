@@ -36,7 +36,7 @@ export class BottleDetailsPage {
 
   listDetails(liqure) {
     this.title = liqure['li_name'];
-    this.image = 'assets/imgs/bottles/'+ liqure['li_id'] +'.jpg';
+    this.image = "data:image/png;base64," + liqure['li_image'];
     this.price = liqure['price'];
     this.type = liqure['li_type'];
     this.quentity = liqure['quentity'];

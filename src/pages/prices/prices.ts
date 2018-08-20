@@ -37,8 +37,8 @@ export class PricesPage {
   }
 
   ionViewDidLoad() {
-    this.getPriceLength(this.quentity);
-    this.getPrice(this.quentity);
+    //this.getPriceLength(this.quentity);
+    //this.getPrice(this.quentity);
     this.getQuentity(this.brand);
   }
 
@@ -46,43 +46,43 @@ export class PricesPage {
     this.content.scrollToTop();
   }
 
-  getPriceLength(quentity) {
-    this.service.getPriceLength(this.brand, quentity).subscribe(data => {
-      console.log(data);
-      if (data == 0) {
-        this.pricesArrayLength = 0;
-      }
-      else {
-        this.pricesArrayLength = data[0]['length'];
-      }
-    },
-      (err) => {
-        let message = "Network error! Please check your internet connection.";
-        this.toastService.toastCtrlr(message);
-      });
-  }
+  // getPriceLength(quentity) {
+  //   this.service.getPriceLength(this.brand, quentity).subscribe(data => {
+  //     console.log(data);
+  //     if (data == 0) {
+  //       this.pricesArrayLength = 0;
+  //     }
+  //     else {
+  //       this.pricesArrayLength = data[0]['length'];
+  //     }
+  //   },
+  //     (err) => {
+  //       let message = "Network error! Please check your internet connection.";
+  //       this.toastService.toastCtrlr(message);
+  //     });
+  // }
 
-  getPrice(quentity) {
-    let loading = this.loadingCtrl.create({
-			content: 'Get Ready...'
-		});
-		loading.present();
-    this.service.getPrice(this.brand, quentity, 0, this.sortBy).subscribe(data => {
-      console.log(data);
-      loading.dismiss();
-      if (data == 0) {
-        this.pricesArray = [{ li_name: "null" }];
-      }
-      else {
-        this.pricesArray = data;
-      }
-    },
-      (err) => {
-        loading.dismiss();
-        let message = "Network error! Please check your internet connection.";
-        this.toastService.toastCtrlr(message);
-      });
-  }
+  // getPrice(quentity) {
+  //   let loading = this.loadingCtrl.create({
+	// 		content: 'Get Ready...'
+	// 	});
+	// 	loading.present();
+  //   this.service.getPrice(this.brand, quentity, 0, "li_name").subscribe(data => {
+  //     console.log(data);
+  //     loading.dismiss();
+  //     if (data == 0) {
+  //       this.pricesArray = [{ li_name: "null" }];
+  //     }
+  //     else {
+  //       this.pricesArray = data;
+  //     }
+  //   },
+  //     (err) => {
+  //       loading.dismiss();
+  //       let message = "Network error! Please check your internet connection.";
+  //       this.toastService.toastCtrlr(message);
+  //     });
+  // }
 
   getQuentity(brand) {
     this.service.getQuentity(brand).subscribe(data => {
@@ -102,14 +102,15 @@ export class PricesPage {
 
   priceListUpdate() {
     console.log(this.quentity, this.sortBy);
-    this.getPriceLength(this.quentity);
-    // let loading = this.loadingCtrl.create({
-		// 	content: 'Get Ready...'
-		// });
-		// loading.present();
+    this.isSearchBarOpened = false;
+    //this.getPriceLength(this.quentity);
+    let loading = this.loadingCtrl.create({
+			content: 'Get Ready...'
+		});
+		loading.present();
     this.service.getPrice(this.brand, this.quentity, 0, this.sortBy).subscribe(data => {
       console.log(data);
-      //loading.dismiss();
+      loading.dismiss();
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
       }

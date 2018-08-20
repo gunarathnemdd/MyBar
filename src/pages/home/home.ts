@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 
 import { BrandPage } from '../brand/brand';
 import { CocktailPage } from '../cocktail/cocktail';
@@ -13,14 +14,57 @@ import { ToastControllerProvider } from '../../providers/toast-controller/toast-
 export class HomePage {
 
   constructor(
+    public platform: Platform,
     public navCtrl: NavController,
     public splashScreen: SplashScreen,
-    public toastService: ToastControllerProvider) {
+    public toastService: ToastControllerProvider,
+    private alertCtrl: AlertController,
+    private storage: Storage) {
 
   }
 
   ionViewDidLoad() {
-    this.splashScreen.hide();
+    this.storage.get('isOver21').then((val) => {
+      this.splashScreen.hide();
+      if (val != true) {
+        let alert = this.alertCtrl.create({
+          title: "Verify Your Age",
+          enableBackdropDismiss: false,
+          buttons: [{
+            text: 'Under 21',
+            handler: () => {
+              this.storage.set('isOver21', false);
+              alert.dismiss().then(() => {
+                this.warningMessage();
+              });
+              return false;
+            }
+          }, {
+            text: '21+',
+            handler: () => {
+              this.storage.set('isOver21', true);
+              alert.dismiss();
+            }
+          }]
+        });
+        alert.present();
+      }
+    });
+  }
+
+  warningMessage() {
+    let alert = this.alertCtrl.create({
+      title: "Sorry!",
+      subTitle: "Access to this app requires you to be of legal age.",
+      enableBackdropDismiss: false,
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.platform.exitApp();
+        }
+      }]
+    });
+    alert.present();
   }
 
   getPrices() {
