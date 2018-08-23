@@ -75,8 +75,13 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <img [src]="image" onError="this.src='assets/imgs/bottle-default.png'" />
+        <img-loader [src]="image" fallback="assets/imgs/bottle-default.png" useImg></img-loader>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab bottom right>
+      <button ion-fab (click)="addComment()">
+          <ion-icon name="ios-create-outline"></ion-icon>
+      </button>
+  </ion-fab>
 </ion-content>

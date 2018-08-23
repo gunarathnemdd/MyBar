@@ -41,9 +41,9 @@ export class HomePage {
             }
           }, {
             text: '21+',
+            role: 'cancel',
             handler: () => {
               this.storage.set('isOver21', true);
-              alert.dismiss();
             }
           }]
         });
