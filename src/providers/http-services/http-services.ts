@@ -30,8 +30,16 @@ export class HttpServicesProvider {
     return this.http.get(this.host + '/getBottlePrices.php?liqureId=' + liqureId);
   }
 
+  getBottleDetails(liqureId) {
+    return this.http.get(this.host + '/getBottleDetails.php?liqureId=' + liqureId);
+  }
+
   getRecipe(brand) {
     return this.http.get(this.host + '/getRecipe.php?brand=' + brand);
+  }
+
+  saveComments(name, comment) {
+    return this.http.get(this.host + '/saveComments.php?name=' + name + '&comment=' + comment);
   }
 
 }

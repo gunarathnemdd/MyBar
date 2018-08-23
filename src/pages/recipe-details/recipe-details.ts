@@ -45,9 +45,9 @@ export class RecipeDetailsPage {
     this.recipeName = recipe['cr_name'];
     this.description = recipe['cr_description'];
     this.liqure = recipe['cr_liqureType'];
-    this.speciallyFor = recipe['cr_speciallyFor'];
     this.garnishes = recipe['cr_garnishes'];
     this.image = 'assets/imgs/cocktail/'+ recipe['cr_id'] +'.jpg';
+    if (recipe['cr_speciallyFor'] == '') { this.speciallyFor = recipe['cr_liqureType']; } else { this.speciallyFor = recipe['cr_speciallyFor']; }
   }
 
 }
