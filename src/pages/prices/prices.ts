@@ -67,6 +67,7 @@ export class PricesPage {
 
   getPrice() {
     this.scrollToTop();
+    this.isSearchBarOpened = false;
     let loading = this.loadingCtrl.create({
       content: 'Get Ready...'
     });
