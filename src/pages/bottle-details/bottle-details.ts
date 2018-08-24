@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
 import { ToastControllerProvider } from '../../providers/toast-controller/toast-controller';
+import { FavoriteLiquresProvider } from '../../providers/favorite-liqures/favorite-liqures';
 
 @Component({
   selector: 'page-bottle-details',
@@ -22,17 +23,22 @@ export class BottleDetailsPage {
   public pricesArray: any;
   public imageUrl: any;
   public id: any;
+  public isFavorite = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private alertCtrl: AlertController,
     public service: HttpServicesProvider,
-    public toastService: ToastControllerProvider) {
+    public toastService: ToastControllerProvider,
+    public favoriteProvider: FavoriteLiquresProvider) {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
     this.liqure = this.navParams.get('liqure');
     this.pricesArray = this.navParams.get('priceList');
+    this.favoriteProvider.isFavorite(this.liqure['li_id']).then(isFav => {
+      this.isFavorite = isFav;
+    })
   }
 
   ionViewDidLoad() {
@@ -63,7 +69,7 @@ export class BottleDetailsPage {
     this.id = liqure['li_id']; 
     this.title = liqure['li_name'];
     this.type = liqure['li_type'];
-    this.image = "https://greenic.000webhostapp.com/myBar/images/" + liqure['li_id'] + ".png";
+    this.image = "https://greenic.000webhostapp.com/myBar/images/bottles/" + liqure['li_id'] + ".png";
     if (liqure['li_volume'] == '0') { this.volume = "-"; } else { this.volume = liqure['li_volume'] + "%"; }
     if (liqure['li_year'] == '0000') { this.year = "-"; } else { this.year = liqure['li_year']; }
     if (liqure['li_company'] == '') { this.company = "-"; } else { this.company = liqure['li_company']; }
@@ -121,6 +127,17 @@ export class BottleDetailsPage {
       }]
     });
     alert.present();
+  }
 
+  favoriteLiqure() {
+    this.favoriteProvider.favoriteLiqure(this.liqure).then(() => {
+      this.isFavorite = true;
+    });
+  }
+
+  unfavoriteLiqure() {
+    this.favoriteProvider.unfavoriteLiqure(this.liqure).then(() => {
+      this.isFavorite = false;
+    });
   }
 }

@@ -3,7 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Prices / {{brand}} / {{title}}</ion-title>
+    <ion-title>Prices / {{brand}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="unfavoriteLiqure()" *ngIf="isFavorite"><ion-icon id="star" name="star"></ion-icon></button>
+      <button ion-button icon-only (click)="favoriteLiqure()" *ngIf="!isFavorite"><ion-icon name="star-outline"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -34,11 +38,6 @@
     </div>
     <ion-row>
       <ion-col col-6>
-        <!-- <ion-row>
-          <ion-col>
-            <strong>Price:</strong> Rs.{{price}}
-          </ion-col>
-        </ion-row> -->
         <ion-row>
           <ion-col>
             <strong>Type:</strong> {{type}}
@@ -51,16 +50,11 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <strong>Volume:</strong> {{quentity}}ml
+            <strong>Year:</strong> {{year}}
           </ion-col>
         </ion-row>
       </ion-col>
       <ion-col col-6>
-        <ion-row>
-          <ion-col>
-            <strong>Year:</strong> {{year}}
-          </ion-col>
-        </ion-row>
         <ion-row>
           <ion-col>
             <strong>Company:</strong> {{company}}
@@ -75,7 +69,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <img-loader [src]="image" fallback="assets/imgs/bottle-default.png" useImg></img-loader>
+        <img [src]="image" onError="this.src='assets/imgs/bottle-default.png'" />
       </ion-col>
     </ion-row>
   </ion-grid>

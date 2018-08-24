@@ -108,6 +108,7 @@ export class PricesPage {
   }
 
   sortPriceList() {
+    this.scrollToTop();
     let sortBy = this.sortBy;
     if (sortBy == 'li_name') {
       this.pricesArray = orderBy(this.pricesArray, ['li_name'], ['asc']);
@@ -174,6 +175,12 @@ export class PricesPage {
       this.sortBy = "li_name";
       this.pricesArray = this.oldPriceArray;
     }
+  }
+
+  cancelSearchBar() {
+    this.isSearchBarOpened = false;
+    this.sortBy = "li_name";
+    this.pricesArray = this.oldPriceArray;
   }
 
   showDetails(liqure) {

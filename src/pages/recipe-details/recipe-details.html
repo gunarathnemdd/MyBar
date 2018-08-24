@@ -3,7 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Cocktails / {{brand}} / {{recipeName}}</ion-title>
+    <ion-title>Cocktails / {{brand}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="unfavoriteCocktail()" *ngIf="isFavorite"><ion-icon id="star" name="star"></ion-icon></button>
+      <button ion-button icon-only (click)="favoriteCocktail()" *ngIf="!isFavorite"><ion-icon name="star-outline"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

@@ -5,7 +5,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { IonicImageLoader } from 'ionic-image-loader';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -21,6 +20,8 @@ import { BottleDetailsPage } from '../pages/bottle-details/bottle-details';
 import { HttpServicesProvider } from '../providers/http-services/http-services';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
 import { AlertControllerProvider } from '../providers/alert-controller/alert-controller';
+import { FavoriteCocktailsProvider } from '../providers/favorite-cocktails/favorite-cocktails';
+import { FavoriteLiquresProvider } from '../providers/favorite-liqures/favorite-liqures';
 
 import { AutohideDirective } from '../directives/autohide/autohide';
 
@@ -42,8 +43,7 @@ import { AutohideDirective } from '../directives/autohide/autohide';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
-    IonicImageLoader.forRoot()
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,7 +64,9 @@ import { AutohideDirective } from '../directives/autohide/autohide';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpServicesProvider,
     ToastControllerProvider,
-    AlertControllerProvider
+    AlertControllerProvider,
+    FavoriteCocktailsProvider,
+    FavoriteLiquresProvider
   ]
 })
 export class AppModule {}

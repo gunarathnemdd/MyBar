@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content } from 'ionic-angular';
 
+import { FavoriteCocktailsProvider } from '../../providers/favorite-cocktails/favorite-cocktails';
+
 @Component({
   selector: 'page-recipe-details',
   templateUrl: 'recipe-details.html',
@@ -17,13 +19,18 @@ export class RecipeDetailsPage {
   public speciallyFor: any;
   public garnishes: any;
   public image: any;
+  public isFavorite = false;
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public favoriteProvider: FavoriteCocktailsProvider) {
     this.navParams = navParams
     this.recipe = this.navParams.get('recipe');
     this.brand = this.navParams.get('brand');
+    this.favoriteProvider.isFavorite(this.recipe['cr_id']).then(isFav => {
+      this.isFavorite = isFav;
+    })
   }
 
   ionViewDidLoad() {
@@ -46,8 +53,20 @@ export class RecipeDetailsPage {
     this.description = recipe['cr_description'];
     this.liqure = recipe['cr_liqureType'];
     this.garnishes = recipe['cr_garnishes'];
-    this.image = 'assets/imgs/cocktail/'+ recipe['cr_id'] +'.jpg';
+    this.image = 'https://greenic.000webhostapp.com/myBar/images/cocktail/'+ recipe['cr_id'] +'.png';
     if (recipe['cr_speciallyFor'] == '') { this.speciallyFor = recipe['cr_liqureType']; } else { this.speciallyFor = recipe['cr_speciallyFor']; }
+  }
+
+  favoriteCocktail() {
+    this.favoriteProvider.favoriteCocktail(this.recipe).then((data) => {
+      this.isFavorite = true;
+    });
+  }
+
+  unfavoriteCocktail() {
+    this.favoriteProvider.unfavoriteCocktail(this.recipe).then((data) => {
+      this.isFavorite = false;
+    });
   }
 
 }
