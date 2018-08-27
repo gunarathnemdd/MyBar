@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { BitePage } from '../pages/bite/bite';
 import { BrandPage } from '../pages/brand/brand';
 import { CocktailPage } from '../pages/cocktail/cocktail';
+import { RecipePage } from '../pages/recipe/recipe';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,15 +17,15 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   public lastBack: any = Date.now();
   public allowClose: boolean = false;
 
   constructor(
     public app: App,
-    public platform: Platform, 
-    public statusBar: StatusBar, 
+    public platform: Platform,
+    public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public toastCtrl: ToastController) {
     this.initializeApp();
@@ -34,7 +35,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Prices', component: BrandPage },
       { title: 'Cocktails', component: CocktailPage },
-      { title: 'Bites (Coming Soon!)', component: BitePage }
+      { title: 'Bites (Coming Soon!)', component: BitePage },
+      { title: 'Favourite Cocktails', component: RecipePage }
     ];
 
   }
@@ -51,12 +53,12 @@ export class MyApp {
         const nav = this.app.getActiveNav();
         const closeDelay = 2000;
         const spamDelay = 500;
-      
-        if(overlay && overlay.dismiss) {
+
+        if (overlay && overlay.dismiss) {
           overlay.dismiss();
-        } else if(nav.canGoBack()){
+        } else if (nav.canGoBack()) {
           nav.pop();
-        } else if(Date.now() - this.lastBack > spamDelay && !this.allowClose) {
+        } else if (Date.now() - this.lastBack > spamDelay && !this.allowClose) {
           this.allowClose = true;
           let toast = this.toastCtrl.create({
             message: "Press BACK again to exit",
@@ -67,7 +69,7 @@ export class MyApp {
             this.allowClose = false;
           });
           toast.present();
-        } else if(Date.now() - this.lastBack < closeDelay && this.allowClose) {
+        } else if (Date.now() - this.lastBack < closeDelay && this.allowClose) {
           this.platform.exitApp();
         }
         this.lastBack = Date.now();
@@ -78,6 +80,13 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.title != 'Favourite Cocktails') {
+      this.nav.setRoot(page.component);
+    }
+    else {
+      this.nav.setRoot(page.component , {
+        isFavouritePage: true
+      });
+    }
   }
 }

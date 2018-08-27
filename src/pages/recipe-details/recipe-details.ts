@@ -20,7 +20,7 @@ export class RecipeDetailsPage {
   public garnishes: any;
   public image: any;
   public isFavorite = false;
-  //public isFavouritePage: boolean = false;
+  public isFavouritePage: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -29,10 +29,10 @@ export class RecipeDetailsPage {
     this.navParams = navParams
     this.recipe = this.navParams.get('recipe');
     this.brand = this.navParams.get('brand');
-    //this.isFavouritePage = this.navParams.get('isFavouritePage');
-    // this.favoriteProvider.isFavorite(this.recipe['cr_id']).then(isFav => {
-    //   this.isFavorite = isFav;
-    // })
+    this.isFavouritePage = this.navParams.get('isFavouritePage');
+    this.favoriteProvider.isFavorite(this.recipe['cr_id']).then(isFav => {
+      this.isFavorite = isFav;
+    })
   }
 
   ionViewDidLoad() {
@@ -59,16 +59,16 @@ export class RecipeDetailsPage {
     if (recipe['cr_speciallyFor'] == '') { this.speciallyFor = recipe['cr_liqureType']; } else { this.speciallyFor = recipe['cr_speciallyFor']; }
   }
 
-  // favoriteCocktail() {
-  //   this.favoriteProvider.favoriteCocktail(this.recipe).then((data) => {
-  //     this.isFavorite = true;
-  //   });
-  // }
+  favoriteCocktail() {
+    this.favoriteProvider.favoriteCocktail(this.recipe).then((data) => {
+      this.isFavorite = true;
+    });
+  }
 
-  // unfavoriteCocktail() {
-  //   this.favoriteProvider.unfavoriteCocktail(this.recipe).then((data) => {
-  //     this.isFavorite = false;
-  //   });
-  // }
+  unfavoriteCocktail() {
+    this.favoriteProvider.unfavoriteCocktail(this.recipe).then((data) => {
+      this.isFavorite = false;
+    });
+  }
 
 }

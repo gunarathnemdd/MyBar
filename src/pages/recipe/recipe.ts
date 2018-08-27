@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, LoadingController } from 'ionic-angular';
-//import { orderBy } from 'lodash';
+import { orderBy } from 'lodash';
 
 import { RecipeDetailsPage } from '../recipe-details/recipe-details';
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
@@ -16,7 +16,7 @@ export class RecipePage {
 
   public brand: any;
   public cocktailArray: any;
-  //public isFavouritePage: boolean = false;
+  public isFavouritePage: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -27,17 +27,21 @@ export class RecipePage {
     public favoriteProvider: FavoriteCocktailsProvider) {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
-    //this.isFavouritePage = this.navParams.get('isFavouritePage');
+    this.isFavouritePage = this.navParams.get('isFavouritePage');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipePage');
-    //if (!this.isFavouritePage) {
+    if (!this.isFavouritePage) {
       this.getRecipe(this.brand);
-    // }
-    // else {
-    //   this.showFavourite();
-    // }
+    }
+  }
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter RecipePage');
+    if (this.isFavouritePage) {
+      this.showFavourite();
+    }
   }
 
   scrollToTop() {
@@ -67,26 +71,31 @@ export class RecipePage {
       });
   }
 
-  // showFavourite() {
-  //   this.favoriteProvider.getAllFavoriteCocktails().then(data => {
-  //     console.log(data);
-  //     this.cocktailArray = orderBy(data, ['cr_name'], ['asc']);
-  //   })
-  // }
+  showFavourite() {
+    this.favoriteProvider.getAllFavoriteCocktails().then(data => {
+      console.log(data);
+      if (data.length == 0) {
+        this.cocktailArray = [{ cr_name: "null" }];
+      }
+      else {
+        this.cocktailArray = orderBy(data, ['cr_name'], ['asc']);
+      }
+    })
+  }
 
   showDetails(cocktail) {
-    //if (!this.isFavouritePage) {
+    if (!this.isFavouritePage) {
       this.navCtrl.push(RecipeDetailsPage, {
         brand: this.brand,
         recipe: cocktail
       });
-    // }
-    // else {
-    //   this.navCtrl.push(RecipeDetailsPage, {
-    //     brand: this.brand,
-    //     recipe: cocktail,
-    //     isFavouritePage: true
-    //   });
-    // }
+    }
+    else {
+      this.navCtrl.push(RecipeDetailsPage, {
+        brand: this.brand,
+        recipe: cocktail,
+        isFavouritePage: true
+      });
+    }
   }
 }
