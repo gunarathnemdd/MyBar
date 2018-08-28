@@ -7,7 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { BitePage } from '../pages/bite/bite';
 import { BrandPage } from '../pages/brand/brand';
 import { CocktailPage } from '../pages/cocktail/cocktail';
-import { RecipePage } from '../pages/recipe/recipe';
+import { FavouriteCocktailsListPage } from '../pages/favourite-cocktails-list/favourite-cocktails-list';
+import { FavouriteLiquresListPage } from '../pages/favourite-liqures-list/favourite-liqures-list';
 
 @Component({
   templateUrl: 'app.html'
@@ -36,7 +37,8 @@ export class MyApp {
       { title: 'Prices', component: BrandPage },
       { title: 'Cocktails', component: CocktailPage },
       { title: 'Bites (Coming Soon!)', component: BitePage },
-      { title: 'Favourite Cocktails', component: RecipePage }
+      { title: 'Favourite Drinks', component: FavouriteLiquresListPage},
+      { title: 'Favourite Cocktails', component: FavouriteCocktailsListPage }
     ];
 
   }
@@ -80,13 +82,6 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    if (page.title != 'Favourite Cocktails') {
-      this.nav.setRoot(page.component);
-    }
-    else {
-      this.nav.setRoot(page.component , {
-        isFavouritePage: true
-      });
-    }
+    this.nav.setRoot(page.component);
   }
 }

@@ -3,9 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <!-- <ion-title>Cocktails / {{brand}} / {{recipeName}}</ion-title> -->
-    <ion-title *ngIf="!isFavouritePage">Cocktails / {{brand}}</ion-title>
-    <ion-title *ngIf="isFavouritePage">Cocktails / Favourite</ion-title>
+    <ion-title>Cocktails / {{brand}} / {{recipeName}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="unfavoriteCocktail()" *ngIf="isFavorite">
         <ion-icon id="star" name="star"></ion-icon>

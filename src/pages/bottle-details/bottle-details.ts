@@ -11,7 +11,6 @@ import { FavoriteLiquresProvider } from '../../providers/favorite-liqures/favori
 })
 export class BottleDetailsPage {
 
-  public brand: any;
   public liqure: any;
   public year: any;
   public company: any;
@@ -23,7 +22,7 @@ export class BottleDetailsPage {
   public pricesArray: any;
   public imageUrl: any;
   public id: any;
-  //public isFavorite = false;
+  public isFavorite = false;
 
   constructor(
     public navCtrl: NavController,
@@ -32,13 +31,12 @@ export class BottleDetailsPage {
     public service: HttpServicesProvider,
     public toastService: ToastControllerProvider,
     public favoriteProvider: FavoriteLiquresProvider) {
-    this.navParams = navParams
-    this.brand = this.navParams.get('brand');
+    this.navParams = navParams;
     this.liqure = this.navParams.get('liqure');
     this.pricesArray = this.navParams.get('priceList');
-    // this.favoriteProvider.isFavorite(this.liqure['li_id']).then(isFav => {
-    //   this.isFavorite = isFav;
-    // })
+    this.favoriteProvider.isFavorite(this.liqure['li_id']).then(isFav => {
+      this.isFavorite = isFav;
+    })
   }
 
   ionViewDidLoad() {
@@ -110,15 +108,23 @@ export class BottleDetailsPage {
     alert.present();
   }
 
-  // favoriteLiqure() {
-  //   this.favoriteProvider.favoriteLiqure(this.liqure).then(() => {
-  //     this.isFavorite = true;
-  //   });
-  // }
+  favoriteLiqure() {
+    this.favoriteProvider.favoriteLiqure(this.liqure).then((data) => {
+      console.log(data);
+      this.isFavorite = true;
+    });
+    this.favoriteProvider.favoriteLiqureType(this.liqure['li_type']).then((data) => {
+      console.log(data);
+    });
+  }
 
-  // unfavoriteLiqure() {
-  //   this.favoriteProvider.unfavoriteLiqure(this.liqure).then(() => {
-  //     this.isFavorite = false;
-  //   });
-  // }
+  unfavoriteLiqure() {
+    this.favoriteProvider.unfavoriteLiqure(this.liqure['li_id']).then((data) => {
+      console.log(data);
+      this.isFavorite = false;
+    });
+    this.favoriteProvider.unfavoriteLiqureType(this.liqure['li_type']).then((data) => {
+      console.log(data);
+    });
+  }
 }

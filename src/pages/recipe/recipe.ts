@@ -1,11 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, LoadingController } from 'ionic-angular';
-import { orderBy } from 'lodash';
 
 import { RecipeDetailsPage } from '../recipe-details/recipe-details';
+
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
 import { ToastControllerProvider } from '../../providers/toast-controller/toast-controller';
-import { FavoriteCocktailsProvider } from '../../providers/favorite-cocktails/favorite-cocktails';
 
 @Component({
   selector: 'page-recipe',
@@ -16,32 +15,20 @@ export class RecipePage {
 
   public brand: any;
   public cocktailArray: any;
-  public isFavouritePage: boolean = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public service: HttpServicesProvider,
     public toastService: ToastControllerProvider,
-    public loadingCtrl: LoadingController,
-    public favoriteProvider: FavoriteCocktailsProvider) {
+    public loadingCtrl: LoadingController) {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
-    this.isFavouritePage = this.navParams.get('isFavouritePage');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipePage');
-    if (!this.isFavouritePage) {
-      this.getRecipe(this.brand);
-    }
-  }
-
-  ionViewWillEnter() {
-    console.log('ionViewWillEnter RecipePage');
-    if (this.isFavouritePage) {
-      this.showFavourite();
-    }
+    this.getRecipe(this.brand);
   }
 
   scrollToTop() {
@@ -66,36 +53,15 @@ export class RecipePage {
     },
       (err) => {
         loading.dismiss();
+        this.cocktailArray = [{ li_name: "noNetwork" }];
         let message = "Network error! Please check your internet connection.";
         this.toastService.toastCtrlr(message);
       });
   }
 
-  showFavourite() {
-    this.favoriteProvider.getAllFavoriteCocktails().then(data => {
-      console.log(data);
-      if (data.length == 0) {
-        this.cocktailArray = [{ cr_name: "null" }];
-      }
-      else {
-        this.cocktailArray = orderBy(data, ['cr_name'], ['asc']);
-      }
-    })
-  }
-
   showDetails(cocktail) {
-    if (!this.isFavouritePage) {
-      this.navCtrl.push(RecipeDetailsPage, {
-        brand: this.brand,
-        recipe: cocktail
-      });
-    }
-    else {
-      this.navCtrl.push(RecipeDetailsPage, {
-        brand: this.brand,
-        recipe: cocktail,
-        isFavouritePage: true
-      });
-    }
+    this.navCtrl.push(RecipeDetailsPage, {
+      recipe: cocktail
+    });
   }
 }

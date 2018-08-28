@@ -34,10 +34,10 @@ export class FavoriteCocktailsProvider {
     });
   }
 
-  unfavoriteCocktail(cocktail) {
+  unfavoriteCocktail(cocktailId) {
     return this.getAllFavoriteCocktails().then(result => {
       if (result) {
-        var index = result.indexOf(cocktail);
+        var index = result.map(function (e) { return e.cr_id; }).indexOf(cocktailId);
         result.splice(index, 1);
         return this.storage.set(STORAGE_KEY, result);
       }
