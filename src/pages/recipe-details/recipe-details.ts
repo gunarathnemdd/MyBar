@@ -25,9 +25,8 @@ export class RecipeDetailsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public favoriteProvider: FavoriteCocktailsProvider) {
-    this.navParams = navParams
+    this.navParams = navParams;
     this.recipe = this.navParams.get('recipe');
-    this.brand = this.navParams.get('brand');
     this.favoriteProvider.isFavorite(this.recipe['cr_id']).then(isFav => {
       this.isFavorite = isFav;
     })
@@ -49,6 +48,7 @@ export class RecipeDetailsPage {
     for (let item of ingreArray) {
       this.ingredientArray.push({ name: item });
     }
+    this.brand = recipe['cr_liqureType'];
     this.recipeName = recipe['cr_name'];
     this.description = recipe['cr_description'];
     this.liqure = recipe['cr_liqureType'];
@@ -64,7 +64,7 @@ export class RecipeDetailsPage {
   }
 
   unfavoriteCocktail() {
-    this.favoriteProvider.unfavoriteCocktail(this.recipe).then((data) => {
+    this.favoriteProvider.unfavoriteCocktail(this.recipe['cr_id']).then((data) => {
       this.isFavorite = false;
     });
   }

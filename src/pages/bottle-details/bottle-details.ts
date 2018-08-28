@@ -11,7 +11,6 @@ import { FavoriteLiquresProvider } from '../../providers/favorite-liqures/favori
 })
 export class BottleDetailsPage {
 
-  public brand: any;
   public liqure: any;
   public year: any;
   public company: any;
@@ -32,8 +31,7 @@ export class BottleDetailsPage {
     public service: HttpServicesProvider,
     public toastService: ToastControllerProvider,
     public favoriteProvider: FavoriteLiquresProvider) {
-    this.navParams = navParams
-    this.brand = this.navParams.get('brand');
+    this.navParams = navParams;
     this.liqure = this.navParams.get('liqure');
     this.pricesArray = this.navParams.get('priceList');
     this.favoriteProvider.isFavorite(this.liqure['li_id']).then(isFav => {
@@ -44,25 +42,6 @@ export class BottleDetailsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecipePage');
     this.listDetails(this.liqure);
-    // this.service.getBottleDetails(this.liqure['li_id']).subscribe(data => {
-    //   if (data == 0) {
-    //     let message = "Network error! Please check your internet connection.";
-    //     this.toastService.toastCtrlr(message);
-    //   }
-    //   else {
-    //     this.imageUrl = data[0]['li_image'];
-    //     if (this.imageUrl != "") {
-    //       this.image = "data:image/png;base64," + data[0]['li_image'];
-    //     }
-    //     else {
-    //       this.image = "assets/imgs/bottle-default.png";
-    //     }
-    //   }
-    // },
-    //   (err) => {
-    //     let message = "Network error! Please check your internet connection.";
-    //     this.toastService.toastCtrlr(message);
-    //   });
   }
 
   listDetails(liqure) {
@@ -130,14 +109,22 @@ export class BottleDetailsPage {
   }
 
   favoriteLiqure() {
-    this.favoriteProvider.favoriteLiqure(this.liqure).then(() => {
+    this.favoriteProvider.favoriteLiqure(this.liqure).then((data) => {
+      console.log(data);
       this.isFavorite = true;
+    });
+    this.favoriteProvider.favoriteLiqureType(this.liqure['li_type']).then((data) => {
+      console.log(data);
     });
   }
 
   unfavoriteLiqure() {
-    this.favoriteProvider.unfavoriteLiqure(this.liqure).then(() => {
+    this.favoriteProvider.unfavoriteLiqure(this.liqure['li_id']).then((data) => {
+      console.log(data);
       this.isFavorite = false;
+    });
+    this.favoriteProvider.unfavoriteLiqureType(this.liqure['li_type']).then((data) => {
+      console.log(data);
     });
   }
 }

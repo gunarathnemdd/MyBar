@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Content, LoadingController } from 'ionic-angular';
 
 import { RecipeDetailsPage } from '../recipe-details/recipe-details';
+
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
 import { ToastControllerProvider } from '../../providers/toast-controller/toast-controller';
 
@@ -20,7 +21,7 @@ export class RecipePage {
     public navParams: NavParams,
     public service: HttpServicesProvider,
     public toastService: ToastControllerProvider,
-		public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController) {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
   }
@@ -37,9 +38,9 @@ export class RecipePage {
   getRecipe(brand) {
     console.log(brand);
     let loading = this.loadingCtrl.create({
-			content: 'Get Ready...'
-		});
-		loading.present();
+      content: 'Get Ready...'
+    });
+    loading.present();
     this.service.getRecipe(brand).subscribe(data => {
       console.log(data);
       loading.dismiss();
@@ -52,14 +53,14 @@ export class RecipePage {
     },
       (err) => {
         loading.dismiss();
+        this.cocktailArray = [{ li_name: "noNetwork" }];
         let message = "Network error! Please check your internet connection.";
         this.toastService.toastCtrlr(message);
       });
   }
-  
+
   showDetails(cocktail) {
     this.navCtrl.push(RecipeDetailsPage, {
-      brand: this.brand,
       recipe: cocktail
     });
   }

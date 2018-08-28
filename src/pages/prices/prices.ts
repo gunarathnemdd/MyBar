@@ -5,7 +5,6 @@ import { orderBy } from 'lodash';
 import { BottleDetailsPage } from '../bottle-details/bottle-details';
 import { HttpServicesProvider } from '../../providers/http-services/http-services';
 import { ToastControllerProvider } from '../../providers/toast-controller/toast-controller';
-import { AlertControllerProvider } from '../../providers/alert-controller/alert-controller';
 
 @Component({
   selector: 'page-prices',
@@ -30,7 +29,6 @@ export class PricesPage {
     public navParams: NavParams,
     public service: HttpServicesProvider,
     public toastService: ToastControllerProvider,
-    public alertService: AlertControllerProvider,
     public loadingCtrl: LoadingController) {
     this.navParams = navParams
     this.brand = this.navParams.get('brand');
@@ -67,6 +65,7 @@ export class PricesPage {
 
   getPrice() {
     this.scrollToTop();
+    this.isSearchBarOpened = false;
     let loading = this.loadingCtrl.create({
       content: 'Get Ready...'
     });
@@ -102,6 +101,7 @@ export class PricesPage {
       }
     },
       (err) => {
+        this.pricesArray = [{ li_name: "noNetwork" }];
         let message = "Network error! Please check your internet connection.";
         this.toastService.toastCtrlr(message);
       });

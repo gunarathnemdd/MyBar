@@ -1,0 +1,25 @@
+page-favourite-cocktails-list {
+    .back-button {
+        display: none!important;
+    } 
+    .bar-button-menutoggle {
+        display: inline-block!important;
+    }
+    .row-label {
+        display: table-cell;
+    }
+    #list-row {
+		padding-top: 10px;
+		padding-left: 10px;
+	}
+	.beige {
+		background-color:beige;
+	}
+	.lightyellow {
+		background-color:lightyellow;
+	}
+    #star {
+        color: orange;
+    }
+}
+

@@ -16,6 +16,8 @@ import { CocktailPage } from '../pages/cocktail/cocktail';
 import { RecipePage } from '../pages/recipe/recipe';
 import { RecipeDetailsPage } from '../pages/recipe-details/recipe-details';
 import { BottleDetailsPage } from '../pages/bottle-details/bottle-details';
+import { FavouriteCocktailsListPage } from '../pages/favourite-cocktails-list/favourite-cocktails-list';
+import { FavouriteLiquresListPage } from '../pages/favourite-liqures-list/favourite-liqures-list';
 
 import { HttpServicesProvider } from '../providers/http-services/http-services';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
@@ -37,7 +39,9 @@ import { AutohideDirective } from '../directives/autohide/autohide';
     RecipePage,
     RecipeDetailsPage,
     BottleDetailsPage,
-    AutohideDirective
+    AutohideDirective,
+    FavouriteCocktailsListPage,
+    FavouriteLiquresListPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import { AutohideDirective } from '../directives/autohide/autohide';
     CocktailPage,
     RecipePage,
     RecipeDetailsPage,
-    BottleDetailsPage
+    BottleDetailsPage,
+    FavouriteCocktailsListPage,
+    FavouriteLiquresListPage
   ],
   providers: [
     StatusBar,
