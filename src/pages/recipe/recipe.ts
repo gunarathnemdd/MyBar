@@ -61,7 +61,8 @@ export class RecipePage {
 
   showDetails(cocktail) {
     this.navCtrl.push(RecipeDetailsPage, {
-      recipe: cocktail
+      recipe: cocktail,
+      brand: this.brand
     });
   }
 }

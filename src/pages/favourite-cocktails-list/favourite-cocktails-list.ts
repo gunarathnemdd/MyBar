@@ -48,7 +48,8 @@ export class FavouriteCocktailsListPage {
 
   showDetails(cocktail) {
     this.navCtrl.push(RecipeDetailsPage, {
-      recipe: cocktail
+      recipe: cocktail,
+      isFavouritePage: true
     });
   }
 }

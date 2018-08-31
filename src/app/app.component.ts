@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, App, Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 import { HomePage } from '../pages/home/home';
 import { BitePage } from '../pages/bite/bite';
@@ -28,7 +29,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    private admobFree: AdMobFree) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -37,7 +39,7 @@ export class MyApp {
       { title: 'Prices', component: BrandPage },
       { title: 'Cocktails', component: CocktailPage },
       { title: 'Bites (Coming Soon!)', component: BitePage },
-      { title: 'Favourite Drinks', component: FavouriteLiquresListPage},
+      { title: 'Favourite Drinks', component: FavouriteLiquresListPage },
       { title: 'Favourite Cocktails', component: FavouriteCocktailsListPage }
     ];
 
@@ -49,6 +51,21 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      const bannerConfig: AdMobFreeBannerConfig = {
+        // add your config here
+        // for the sake of this example we will just use the test config
+        isTesting: true,
+        autoShow: true
+      };
+      this.admobFree.banner.config(bannerConfig);
+
+      this.admobFree.banner.prepare()
+        .then(() => {
+          // banner Ad is ready
+          // if we set autoShow to false, then we will need to call the show method here
+        })
+        .catch(e => console.log(e));
 
       this.platform.registerBackButtonAction(() => {
         const overlay = this.app._appRoot._overlayPortal.getActive();
