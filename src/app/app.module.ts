@@ -18,6 +18,7 @@ import { RecipeDetailsPage } from '../pages/recipe-details/recipe-details';
 import { BottleDetailsPage } from '../pages/bottle-details/bottle-details';
 import { FavouriteCocktailsListPage } from '../pages/favourite-cocktails-list/favourite-cocktails-list';
 import { FavouriteLiquresListPage } from '../pages/favourite-liqures-list/favourite-liqures-list';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 import { HttpServicesProvider } from '../providers/http-services/http-services';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
@@ -67,6 +68,7 @@ import { AutohideDirective } from '../directives/autohide/autohide';
   providers: [
     StatusBar,
     SplashScreen,
+    AdMobFree,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpServicesProvider,
     ToastControllerProvider,

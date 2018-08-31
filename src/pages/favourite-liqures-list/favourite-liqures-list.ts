@@ -83,7 +83,8 @@ export class FavouriteLiquresListPage {
       else {
         this.navCtrl.push(BottleDetailsPage, {
           liqure: liqure,
-          priceList: data
+          priceList: data,
+          isFavouritePage: true
         });
       }
     },
