@@ -38,7 +38,8 @@ export class RecipePage {
   getRecipe(brand) {
     console.log(brand);
     let loading = this.loadingCtrl.create({
-      content: 'Get Ready...'
+      content: 'Get Ready...',
+      dismissOnPageChange: true
     });
     loading.present();
     this.service.getRecipe(brand).subscribe(data => {

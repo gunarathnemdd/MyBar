@@ -67,7 +67,8 @@ export class PricesPage {
     this.scrollToTop();
     this.isSearchBarOpened = false;
     let loading = this.loadingCtrl.create({
-      content: 'Get Ready...'
+      content: 'Get Ready...',
+      dismissOnPageChange: true
     });
     loading.present();
     this.sortBy = "li_name";
@@ -126,7 +127,8 @@ export class PricesPage {
   //   //this.offset = 0;
   //   //this.getPriceLength(this.quentity);
   //   let loading = this.loadingCtrl.create({
-  //     content: 'Get Ready...'
+  //     content: 'Get Ready...',
+  //     dismissOnPageChange: true
   //   });
   //   loading.present();
   //   this.service.getPrice(this.brand, this.quentity, 0, this.sortBy).subscribe(data => {
