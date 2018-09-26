@@ -74,14 +74,15 @@ export class PricesPage {
     this.sortBy = "li_name";
     this.service.getPrice(this.brand, this.quentity, 0, "li_name").subscribe(data => {
       console.log(data);
-      loading.dismiss();
       if (data == 0) {
         this.pricesArray = [{ li_name: "null" }];
         this.oldPriceArray = [{ li_name: "null" }];
+        loading.dismiss();
       }
       else {
         this.pricesArray = data;
         this.oldPriceArray = data;
+        loading.dismiss();
       }
     },
       (err) => {

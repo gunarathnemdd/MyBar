@@ -118,6 +118,17 @@ export class BottleDetailsPage {
     this.favoriteProvider.favoriteLiqureType(this.liqure['li_type']).then((data) => {
       console.log(data);
     });
+    this.service.doLikeLiqure(this.id, true).subscribe(data => {
+      console.log(data);
+      if (data['response'] == 'error') {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      }
+    },
+      (err) => {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      });
   }
 
   unfavoriteLiqure() {
@@ -128,5 +139,16 @@ export class BottleDetailsPage {
     this.favoriteProvider.unfavoriteLiqureType(this.liqure['li_type']).then((data) => {
       console.log(data);
     });
+    this.service.doLikeLiqure(this.id, false).subscribe(data => {
+      console.log(data);
+      if (data['response'] == 'error') {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      }
+    },
+      (err) => {
+        let message = "Network error! Please check your internet connection.";
+        this.toastService.toastCtrlr(message);
+      });
   }
 }

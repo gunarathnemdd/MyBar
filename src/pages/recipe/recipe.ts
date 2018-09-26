@@ -44,12 +44,13 @@ export class RecipePage {
     loading.present();
     this.service.getRecipe(brand).subscribe(data => {
       console.log(data);
-      loading.dismiss();
       if (data == 0) {
         this.cocktailArray = [{ cr_name: "null" }];
+        loading.dismiss();
       }
       else {
         this.cocktailArray = data;
+        loading.dismiss();
       }
     },
       (err) => {

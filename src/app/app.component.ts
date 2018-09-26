@@ -39,8 +39,9 @@ export class MyApp {
       { title: 'Prices', component: BrandPage },
       { title: 'Cocktails', component: CocktailPage },
       { title: 'Bites (Coming Soon!)', component: BitePage },
-      { title: 'Favourite Drinks', component: FavouriteLiquresListPage },
-      { title: 'Favourite Cocktails', component: FavouriteCocktailsListPage }
+      { title: 'My Favourite Drinks', component: FavouriteLiquresListPage },
+      { title: 'My Favourite Cocktails', component: FavouriteCocktailsListPage },
+      { title: 'Top 10 Drinks', component: FavouriteCocktailsListPage }
     ];
 
   }
@@ -55,7 +56,8 @@ export class MyApp {
       const bannerConfig: AdMobFreeBannerConfig = {
         // add your config here
         // for the sake of this example we will just use the test config
-        isTesting: true,
+        id: 'ca-app-pub-8698454583961750/1795310869',
+        isTesting: false,
         autoShow: true
       };
       this.admobFree.banner.config(bannerConfig);

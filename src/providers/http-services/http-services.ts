@@ -42,4 +42,8 @@ export class HttpServicesProvider {
     return this.http.get(this.host + '/saveComments.php?name=' + name + '&comment=' + comment);
   }
 
+  doLikeLiqure(liqureId, state) {
+    return this.http.get(this.host + '/doLikeLiqure.php?liqureId=' + liqureId + '&state=' + state);
+  }
+
 }
