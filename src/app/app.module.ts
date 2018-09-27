@@ -5,6 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -18,7 +19,8 @@ import { RecipeDetailsPage } from '../pages/recipe-details/recipe-details';
 import { BottleDetailsPage } from '../pages/bottle-details/bottle-details';
 import { FavouriteCocktailsListPage } from '../pages/favourite-cocktails-list/favourite-cocktails-list';
 import { FavouriteLiquresListPage } from '../pages/favourite-liqures-list/favourite-liqures-list';
-import { AdMobFree } from '@ionic-native/admob-free';
+import { TopLiquresListPage } from '../pages/top-liqures-list/top-liqures-list';
+import { TopCocktailsListPage } from '../pages/top-cocktails-list/top-cocktails-list';
 
 import { HttpServicesProvider } from '../providers/http-services/http-services';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
@@ -42,7 +44,9 @@ import { AutohideDirective } from '../directives/autohide/autohide';
     BottleDetailsPage,
     AutohideDirective,
     FavouriteCocktailsListPage,
-    FavouriteLiquresListPage
+    FavouriteLiquresListPage,
+    TopLiquresListPage,
+    TopCocktailsListPage
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,9 @@ import { AutohideDirective } from '../directives/autohide/autohide';
     RecipeDetailsPage,
     BottleDetailsPage,
     FavouriteCocktailsListPage,
-    FavouriteLiquresListPage
+    FavouriteLiquresListPage,
+    TopLiquresListPage,
+    TopCocktailsListPage
   ],
   providers: [
     StatusBar,

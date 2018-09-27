@@ -24,6 +24,7 @@ export class BottleDetailsPage {
   public id: any;
   public isFavorite = false;
   public isFavouritePage: boolean = false;
+  public isTopLiquresPage: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -36,6 +37,7 @@ export class BottleDetailsPage {
     this.liqure = this.navParams.get('liqure');
     this.pricesArray = this.navParams.get('priceList');
     this.isFavouritePage = this.navParams.get('isFavouritePage');
+    this.isTopLiquresPage = this.navParams.get('isTopLiquresPage');
     this.favoriteProvider.isFavorite(this.liqure['li_id']).then(isFav => {
       this.isFavorite = isFav;
     })
