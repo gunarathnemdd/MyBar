@@ -32,9 +32,9 @@ export class FavouriteLiquresListPage {
     this.getLiqureType();
   }
 
-  // scrollToTop() {
-  //   this.content.scrollToTop();
-  // }
+  scrollToTop() {
+    this.content.scrollToTop();
+  }
 
   getPrice() {
     //this.scrollToTop();

@@ -10,6 +10,8 @@ import { BrandPage } from '../pages/brand/brand';
 import { CocktailPage } from '../pages/cocktail/cocktail';
 import { FavouriteCocktailsListPage } from '../pages/favourite-cocktails-list/favourite-cocktails-list';
 import { FavouriteLiquresListPage } from '../pages/favourite-liqures-list/favourite-liqures-list';
+import { TopLiquresListPage } from '../pages/top-liqures-list/top-liqures-list';
+import { TopCocktailsListPage } from '../pages/top-cocktails-list/top-cocktails-list';
 
 @Component({
   templateUrl: 'app.html'
@@ -39,8 +41,10 @@ export class MyApp {
       { title: 'Prices', component: BrandPage },
       { title: 'Cocktails', component: CocktailPage },
       { title: 'Bites (Coming Soon!)', component: BitePage },
-      { title: 'Favourite Drinks', component: FavouriteLiquresListPage },
-      { title: 'Favourite Cocktails', component: FavouriteCocktailsListPage }
+      { title: 'My Drinks', component: FavouriteLiquresListPage },
+      { title: 'My Cocktails', component: FavouriteCocktailsListPage },
+      { title: 'Top 10 Drinks', component: TopLiquresListPage },
+      { title: 'Top 10 Cocktails', component: TopCocktailsListPage }
     ];
 
   }
@@ -55,7 +59,8 @@ export class MyApp {
       const bannerConfig: AdMobFreeBannerConfig = {
         // add your config here
         // for the sake of this example we will just use the test config
-        isTesting: true,
+        id: 'ca-app-pub-8698454583961750/1795310869',
+        isTesting: false,
         autoShow: true
       };
       this.admobFree.banner.config(bannerConfig);
@@ -69,7 +74,7 @@ export class MyApp {
 
       this.platform.registerBackButtonAction(() => {
         const overlay = this.app._appRoot._overlayPortal.getActive();
-        const nav = this.app.getActiveNav();
+        const nav = this.app.getActiveNavs()[0];
         const closeDelay = 2000;
         const spamDelay = 500;
 

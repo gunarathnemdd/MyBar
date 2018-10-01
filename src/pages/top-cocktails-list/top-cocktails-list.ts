@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content, LoadingController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { filter } from 'lodash';
 
 import { RecipeDetailsPage } from '../recipe-details/recipe-details';
 
@@ -7,55 +8,47 @@ import { HttpServicesProvider } from '../../providers/http-services/http-service
 import { ToastControllerProvider } from '../../providers/toast-controller/toast-controller';
 
 @Component({
-  selector: 'page-recipe',
-  templateUrl: 'recipe.html',
+  selector: 'page-top-cocktails-list',
+  templateUrl: 'top-cocktails-list.html',
 })
-export class RecipePage {
-  @ViewChild(Content) content: Content;
+export class TopCocktailsListPage {
 
-  public brand: any;
   public cocktailArray: any;
 
   constructor(
-    public navCtrl: NavController,
+    public navCtrl: NavController, 
     public navParams: NavParams,
     public service: HttpServicesProvider,
     public toastService: ToastControllerProvider,
     public loadingCtrl: LoadingController) {
-    this.navParams = navParams
-    this.brand = this.navParams.get('brand');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RecipePage');
-    this.getRecipe(this.brand);
+  ionViewWillEnter() {
+    console.log('ionViewDidLoad TopCocktailsListPage');
+    this.showFavourite();
   }
 
-  scrollToTop() {
-    this.content.scrollToTop();
-  }
-
-  getRecipe(brand) {
-    console.log(brand);
+  showFavourite() {
     let loading = this.loadingCtrl.create({
       content: 'Get Ready...',
       dismissOnPageChange: true
     });
     loading.present();
-    this.service.getRecipe(brand).subscribe(data => {
+    this.service.getTopCocktails().subscribe(data => {
       console.log(data);
       if (data == 0) {
         this.cocktailArray = [{ cr_name: "null" }];
         loading.dismiss();
       }
       else {
-        this.cocktailArray = data;
         loading.dismiss();
+        this.cocktailArray = filter(data, function(val) {
+          return val['cr_likes'] > 0;
+        });
       }
     },
       (err) => {
         loading.dismiss();
-        this.cocktailArray = [{ li_name: "noNetwork" }];
         let message = "Network error! Please check your internet connection.";
         this.toastService.toastCtrlr(message);
       });
@@ -64,7 +57,8 @@ export class RecipePage {
   showDetails(cocktail) {
     this.navCtrl.push(RecipeDetailsPage, {
       recipe: cocktail,
-      brand: this.brand
+      isTopCocktailsPage: true
     });
   }
+
 }

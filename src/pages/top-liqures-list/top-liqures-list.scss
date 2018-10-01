@@ -1,0 +1,28 @@
+page-top-liqures-list {
+    .back-button {
+        display: none!important;
+    } 
+    .bar-button-menutoggle {
+        display: inline-block!important;
+    }
+    .row-label {
+        display: table-cell;
+        white-space: unset;
+    }
+    #list-row {
+		padding-top: 10px;
+		padding-left: 10px;
+	}
+	.beige {
+        background-color:beige;
+	}
+	.lightyellow {
+        background-color:lightyellow;
+    }
+    .radio-col {
+        padding: 0 0 5px 0;
+    }
+    #likes {
+        color: blue;
+    }
+}

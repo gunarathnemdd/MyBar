@@ -42,4 +42,20 @@ export class HttpServicesProvider {
     return this.http.get(this.host + '/saveComments.php?name=' + name + '&comment=' + comment);
   }
 
+  doLikeLiqure(liqureId, state) {
+    return this.http.get(this.host + '/doLikeLiqure.php?liqureId=' + liqureId + '&state=' + state);
+  }
+
+  doLikeCocktail(cocktailId, state) {
+    return this.http.get(this.host + '/doLikeCocktail.php?cocktailId=' + cocktailId + '&state=' + state);
+  }
+
+  getTopLiqures() {
+    return this.http.get(this.host + '/getTopLiqures.php');
+  }
+
+  getTopCocktails() {
+    return this.http.get(this.host + '/getTopCocktails.php');
+  }
+
 }

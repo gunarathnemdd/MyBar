@@ -3,35 +3,28 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>My Drinks</ion-title>
+      <ion-title>Top 10 Drinks</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding autohide>
-  <div class="item-divider">
-      <ion-item>
-          <ion-label style="color: black">Type</ion-label>
-          <ion-select [(ngModel)]="type" (ionChange)="getPrice()" interface="popover">
-              <ion-option *ngFor="let item of liqureTypeArray" value="{{item}}">{{item}}</ion-option>
-          </ion-select>
-      </ion-item>
-  </div>
+<ion-content padding>
+        <!-- autohide -->
   <div *ngFor="let item of pricesArray; let i = index">
       <div id="list-div" (click)="showDetails(item)" *ngIf="item.li_name != 'null'">
           <ion-row id="list-row" [ngClass]="(i % 2 == 0) ? 'lightyellow' : 'beige'">
-              <!-- <ion-col col-1 class="display-flex">
-                  <ion-label class="hire-label number">
-                      <h4>{{i+1}}</h4>
-                  </ion-label>
-              </ion-col> -->
-              <ion-col col-10 class="display-flex">
+              <ion-col col-2 class="display-flex">
                   <ion-label class="row-label">
-                      {{item.li_name}}
+                    #{{i+1}}
+                  </ion-label>
+              </ion-col>
+              <ion-col col-8 class="display-flex">
+                  <ion-label class="row-label">
+                    {{item.li_name}}<br>({{item.li_type}})
                   </ion-label>
               </ion-col>
               <ion-col col-2 class="display-flex">
                   <ion-label class="row-label">
-                    <ion-icon id="star" name="star"></ion-icon>
+                    <ion-icon id="likes" name="md-thumbs-up"></ion-icon>&nbsp;{{item.li_likes}}
                   </ion-label>
               </ion-col>
           </ion-row>
@@ -46,9 +39,9 @@
           </ion-row>
       </div>
   </div>
-  <ion-fab bottom right #fab>
+  <!-- <ion-fab bottom right #fab>
       <button ion-fab (click)="scrollToTop()">
           <ion-icon name="ios-arrow-up"></ion-icon>
       </button>
-  </ion-fab>
+  </ion-fab> -->
 </ion-content>
