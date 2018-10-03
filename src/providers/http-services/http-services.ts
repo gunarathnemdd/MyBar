@@ -58,4 +58,8 @@ export class HttpServicesProvider {
     return this.http.get(this.host + '/getTopCocktails.php');
   }
 
+  createCocktails(user_name, user_email, cocktail_name, liqure_types, preparation_method, ingredients, specially_for) {
+    return this.http.get(this.host + '/createCocktails.php?user_name=' + user_name + '&user_email=' + user_email + '&cocktail_name=' + cocktail_name + '&liqure_types=' + liqure_types + '&preparation_method=' + preparation_method + '&ingredients=' + ingredients + '&specially_for=' + specially_for);
+  }
+
 }

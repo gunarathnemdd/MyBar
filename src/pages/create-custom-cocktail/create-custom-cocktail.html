@@ -1,0 +1,145 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Create My Cocktail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form class="form list" [formGroup]="form" (ngSubmit)="createCocktail()">
+    <ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="inputNames" col-auto>
+            <ion-label class="input-label" fixed>Your Name* : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input type="text" formControlName="user_name" id="user_name" placeholder="john"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="inputNames" col-auto>
+            <ion-label class="input-label" fixed>Email* : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input type="email" formControlName="user_email" id="user_email" placeholder="john@email.com"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="inputNames" col-auto>
+            <ion-label class="input-label" fixed>Cocktail Name* : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input type="text" formControlName="cocktail_name" id="cocktail_name" placeholder="Hot Toddy"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="inputNames" col-auto>
+            <ion-label class="input-label" fixed>Liqure Types* : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-select [selectOptions]="liqureTypeOptions" formControlName="liqure_types" placeholder="Whisky"
+              multiple="true">
+              <ion-option value="Arrack">Arrack</ion-option>
+              <ion-option value="Brandy">Brandy</ion-option>
+              <ion-option value="Whisky">Whisky</ion-option>
+              <ion-option value="Vodka">Vodka</ion-option>
+              <ion-option value="Rum">Rum</ion-option>
+              <ion-option value="Gin">Gin</ion-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="inputNames" col-auto>
+            <ion-label class="input-label" fixed>Method* : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-textarea type="text" formControlName="preparation_method" id="preparation_method" placeholder="Fill glass with ice...">
+            </ion-textarea>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="inputNames" col-auto>
+            <ion-label class="input-label" fixed>Specially For : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input type="text" formControlName="specially_for" id="specially_for" placeholder="Red Label"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <div formArrayName="ingredients">
+          <section class="ingredientDiv" [formGroupName]="i" *ngFor="let tech of form.controls.ingredients.controls; let i = index">
+            <ion-item-group>
+              <ion-row>
+                <ion-col col-12>
+                  <ion-label fixed>Ingredients {{i+1}}* : </ion-label>
+                </ion-col>
+                <ion-col col-12>
+                  <ion-input type="text" formControlName="ingredients_name" placeholder="name"></ion-input>
+                </ion-col>
+                <ion-col col-4>
+                  <ion-input type="number" formControlName="ingredients_quantity" placeholder="quantity"></ion-input>
+                </ion-col>
+                <ion-col col-4>
+                  <ion-select formControlName="ingredients_metric" interface="popover" placeholder="metric">
+                    <ion-option value="ml">ml</ion-option>
+                    <ion-option value="teaspoon">teaspoon</ion-option>
+                    <ion-option value="wedge">wedge</ion-option>
+                    <ion-option value="slice">slice</ion-option>
+                    <ion-option value="leaves">leaves</ion-option>
+                    <ion-option value="dash">dash</ion-option>
+                  </ion-select>
+                </ion-col>
+                <ion-col col-12>
+                  <ion-list radio-group formControlName="is_ingredient">
+                    <ion-item>
+                      <ion-label>Ingedient</ion-label>
+                      <ion-radio value="ingredient"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Garnish</ion-label>
+                      <ion-radio value="garnish"></ion-radio>
+                    </ion-item>
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+              <ion-list id="optional">
+                <ion-item>
+                  <ion-label>Optional</ion-label>
+                  <ion-checkbox formControlName="is_optional"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+              <ion-row>
+                
+              </ion-row>
+
+              <ion-row>
+                <ion-col no-padding>
+                  <span float-right ion-button icon-left clear *ngIf="form.controls.ingredients.length > 1" (click)="removeInputField(i)">
+                    <ion-icon name="close"></ion-icon>Remove
+                  </span>
+                </ion-col>
+              </ion-row>
+            </ion-item-group>
+          </section>
+        </div>
+        <span ion-button float-left icon-left clear (click)="addNewInputField()">
+          <ion-icon name="add"></ion-icon>Add
+        </span>
+
+        <ion-row style="text-align: center">
+          <ion-col col-3 push-3>
+            <button ion-button type="submit" class="btnSend" [disabled]="!form.valid">Send</button>
+          </ion-col>
+          <ion-col col-3 push-3>
+            <button ion-button navPop class="btnBack"> Back </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </form>
+</ion-content>

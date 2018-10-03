@@ -1,0 +1,33 @@
+page-create-custom-cocktail {
+    .list {
+        background-color: white;
+    }
+    .ingredientDiv{
+        border: 1px solid blue;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+    .inputNames {
+        width: 110px;
+    }
+    ion-label[fixed] {
+        width: 110px;
+        font-weight: bold;
+    }
+    ion-select {
+        max-width: 100%;
+        background-color: whitesmoke;
+        padding-left: 8px!important;
+    }
+    ion-textarea {
+        background-color: whitesmoke;
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+    ion-input {
+        background-color: whitesmoke;
+    }
+    #optional {
+        margin-left: 1px;
+    }
+}

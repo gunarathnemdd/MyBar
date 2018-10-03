@@ -21,6 +21,7 @@ import { FavouriteCocktailsListPage } from '../pages/favourite-cocktails-list/fa
 import { FavouriteLiquresListPage } from '../pages/favourite-liqures-list/favourite-liqures-list';
 import { TopLiquresListPage } from '../pages/top-liqures-list/top-liqures-list';
 import { TopCocktailsListPage } from '../pages/top-cocktails-list/top-cocktails-list';
+import { CreateCustomCocktailPage } from '../pages/create-custom-cocktail/create-custom-cocktail';
 
 import { HttpServicesProvider } from '../providers/http-services/http-services';
 import { ToastControllerProvider } from '../providers/toast-controller/toast-controller';
@@ -46,7 +47,8 @@ import { AutohideDirective } from '../directives/autohide/autohide';
     FavouriteCocktailsListPage,
     FavouriteLiquresListPage,
     TopLiquresListPage,
-    TopCocktailsListPage
+    TopCocktailsListPage,
+    CreateCustomCocktailPage
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ import { AutohideDirective } from '../directives/autohide/autohide';
     FavouriteCocktailsListPage,
     FavouriteLiquresListPage,
     TopLiquresListPage,
-    TopCocktailsListPage
+    TopCocktailsListPage,
+    CreateCustomCocktailPage
   ],
   providers: [
     StatusBar,
