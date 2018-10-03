@@ -12,6 +12,7 @@ import { FavouriteCocktailsListPage } from '../pages/favourite-cocktails-list/fa
 import { FavouriteLiquresListPage } from '../pages/favourite-liqures-list/favourite-liqures-list';
 import { TopLiquresListPage } from '../pages/top-liqures-list/top-liqures-list';
 import { TopCocktailsListPage } from '../pages/top-cocktails-list/top-cocktails-list';
+import { CreateCustomCocktailPage } from '../pages/create-custom-cocktail/create-custom-cocktail';
 
 @Component({
   templateUrl: 'app.html'
@@ -44,7 +45,8 @@ export class MyApp {
       { title: 'My Drinks', component: FavouriteLiquresListPage },
       { title: 'My Cocktails', component: FavouriteCocktailsListPage },
       { title: 'Top 10 Drinks', component: TopLiquresListPage },
-      { title: 'Top 10 Cocktails', component: TopCocktailsListPage }
+      { title: 'Top 10 Cocktails', component: TopCocktailsListPage },
+      { title: 'Create My Cocktail', component: CreateCustomCocktailPage }
     ];
 
   }
