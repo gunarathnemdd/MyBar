@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { Validators, FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
 import { forEach } from 'lodash';
 
@@ -11,6 +11,7 @@ import { ToastControllerProvider } from '../../providers/toast-controller/toast-
   templateUrl: 'create-custom-cocktail.html',
 })
 export class CreateCustomCocktailPage {
+  @ViewChild(Content) content: Content;
 
   private form: FormGroup;
   public liqureTypeOptions: any;
@@ -81,7 +82,8 @@ export class CreateCustomCocktailPage {
       this.ingredientDetails = this.ingredientDetails.substring(2);
       this.service.createCocktails(user_name, user_email, cocktail_name, liqure_types, preparation_method, this.ingredientDetails, specially_for).subscribe(data => {
         if (data['response'] == 'success') {
-          this.form.reset()
+          this.form.reset();
+          this.content.scrollToTop();
           let message = "Thanks for your contribution. We'll review the recipe and let you know later.";
           this.toastService.toastCtrlr(message);
         }
