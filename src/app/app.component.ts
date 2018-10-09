@@ -79,26 +79,35 @@ export class MyApp {
         const nav = this.app.getActiveNavs()[0];
         const closeDelay = 2000;
         const spamDelay = 500;
+        const activeView = nav.getActive();
 
-        if (overlay && overlay.dismiss) {
-          overlay.dismiss();
-        } else if (nav.canGoBack()) {
-          nav.pop();
-        } else if (Date.now() - this.lastBack > spamDelay && !this.allowClose) {
-          this.allowClose = true;
-          let toast = this.toastCtrl.create({
-            message: "Press BACK again to exit",
-            duration: closeDelay,
-            dismissOnPageChange: true
-          });
-          toast.onDidDismiss(() => {
-            this.allowClose = false;
-          });
-          toast.present();
-        } else if (Date.now() - this.lastBack < closeDelay && this.allowClose) {
-          this.platform.exitApp();
+        if (activeView.name === "HomePage") {
+          if (overlay && overlay.dismiss) {
+            overlay.dismiss();
+          } else if (nav.canGoBack()) {
+            nav.pop();
+          } else if (Date.now() - this.lastBack > spamDelay && !this.allowClose) {
+            this.allowClose = true;
+            let toast = this.toastCtrl.create({
+              message: "Press BACK again to exit",
+              duration: closeDelay,
+              dismissOnPageChange: true
+            });
+            toast.onDidDismiss(() => {
+              this.allowClose = false;
+            });
+            toast.present();
+          } else if (Date.now() - this.lastBack < closeDelay && this.allowClose) {
+            this.platform.exitApp();
+          }
+          this.lastBack = Date.now();
         }
-        this.lastBack = Date.now();
+        else if (nav.canGoBack()) {
+          nav.pop();
+        }
+        else {
+          nav.setRoot(HomePage);
+        }
       });
     });
   }
