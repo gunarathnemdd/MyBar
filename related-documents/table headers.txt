@@ -1,0 +1,5 @@
+liqure table:
+li_name,li_type,li_volume,li_brand,li_year,li_company,li_country
+
+prices table:
+id,quentity,price
