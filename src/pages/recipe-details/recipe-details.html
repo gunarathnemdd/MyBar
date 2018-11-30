@@ -29,7 +29,7 @@
         </h5>
         <div class='contents contents-div'>
           <ion-item ion-item *ngFor="let item of ingredientArray; let i = index">
-            <ion-label>{{ item.name }}</ion-label>
+            <ion-label id="ingredient">{{ item.name }}</ion-label>
             <ion-checkbox></ion-checkbox>
           </ion-item>
         </div>
